@@ -1,16 +1,34 @@
-const Promise = require('bluebird')
-const path = require('path')
+const Promise = require('bluebird');
+const path = require('path');
 
 exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createPage } = actions;
 
   return new Promise((resolve, reject) => {
-    const blogPost = path.resolve('./src/templates/blog-post.js')
+    // const blogPost = path.resolve('./src/templates/blog-post.js');
+    const projectPost = path.resolve('./src/templates/project.js');
+    const conceptPost = path.resolve('./src/templates/concept.js');
+    // allContentfulBlogPost {
+    //   edges {
+    //     node {
+    //       title
+    //       slug
+    //     }
+    //   }
+    // }
     resolve(
       graphql(
         `
           {
-            allContentfulBlogPost {
+            allContentfulProject {
+              edges {
+                node {
+                  title
+                  slug
+                }
+              }
+            }
+            allContentfulConcept {
               edges {
                 node {
                   title
@@ -19,24 +37,46 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           }
-          `
+        `
       ).then(result => {
         if (result.errors) {
-          console.log(result.errors)
-          reject(result.errors)
+          console.log(result.errors);
+          reject(result.errors);
         }
 
-        const posts = result.data.allContentfulBlogPost.edges
-        posts.forEach((post, index) => {
+        // const posts = result.data.allContentfulBlogPost.edges;
+        // posts.forEach((post, index) => {
+        //   createPage({
+        //     path: `/blog/${post.node.slug}/`,
+        //     component: blogPost,
+        //     context: {
+        //       slug: post.node.slug,
+        //     },
+        //   });
+        // });
+
+        const projects = result.data.allContentfulProject.edges;
+        projects.forEach((project, index) => {
           createPage({
-            path: `/blog/${post.node.slug}/`,
-            component: blogPost,
+            path: `/project/${project.node.slug}/`,
+            component: projectPost,
             context: {
-              slug: post.node.slug
+              slug: project.node.slug,
             },
-          })
-        })
+          });
+        });
+
+        const concepts = result.data.allContentfulConcept.edges;
+        concepts.forEach((concept, index) => {
+          createPage({
+            path: `/concept/${concept.node.slug}/`,
+            component: conceptPost,
+            context: {
+              slug: concept.node.slug,
+            },
+          });
+        });
       })
-    )
-  })
-}
+    );
+  });
+};

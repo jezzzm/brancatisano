@@ -1,13 +1,8 @@
 {
-  "name": "Contentful Gatsby Starter",
-  "description": "Gatsby starter for a Contentful project.",
-  "keywords": [
-    "contentful",
-    "gatsby",
-    "static",
-    "ssg"
-  ],
-  "repository": "https://github.com/contentful-userland/gatsby-contentful-starter",
+  "name": "Brancatisano",
+  "description": "Website for architect Stephanie Brancatisano",
+  "keywords": ["contentful", "gatsby", "static", "ssg"],
+  "repository": "https://github.com/jezzzm/brancatisano",
   "success_url": "/",
   "buildpacks": [
     {

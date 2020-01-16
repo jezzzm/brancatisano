@@ -1,22 +1,21 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { Link, graphql } from 'gatsby';
 import get from 'lodash/get';
 import Helmet from 'react-helmet';
-import Hero from '../components/hero';
+import styles from './blog.module.css';
 import Layout from '../components/layout';
 import ProjectPreview from '../components/project-preview';
 
-class RootIndex extends React.Component {
+class ProjectIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title');
     const projects = get(this, 'props.data.allContentfulProject.edges');
-    const [author] = get(this, 'props.data.allContentfulPerson.edges');
 
     return (
       <Layout location={this.props.location}>
         <div style={{ background: '#fff' }}>
           <Helmet title={siteTitle} />
-          <Hero data={author.node} />
+          <div className={styles.hero}>Projects</div>
           <div className="wrapper">
             <h2 className="section-headline">Recent Projects</h2>
             <ul className="article-list">
@@ -35,10 +34,10 @@ class RootIndex extends React.Component {
   }
 }
 
-export default RootIndex;
+export default ProjectIndex;
 
 export const pageQuery = graphql`
-  query HomeQuery {
+  query ProjectIndexQuery {
     site {
       siteMetadata {
         title
@@ -51,35 +50,13 @@ export const pageQuery = graphql`
           slug
           updatedAt
           completion(formatString: "MMMM, YYYY")
+          short
           tags
           hero {
             fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
               ...GatsbyContentfulFluid_tracedSVG
             }
-          }
-          short
-        }
-      }
-    }
-    allContentfulPerson(
-      filter: { contentful_id: { eq: "15jwOBqpxqSAOy2eOO4S0m" } }
-    ) {
-      edges {
-        node {
-          name
-          shortBio {
-            shortBio
-          }
-          title
-          heroImage: image {
-            fluid(
-              maxWidth: 1180
-              maxHeight: 480
-              resizingBehavior: PAD
-              background: "rgb:000000"
-            ) {
-              ...GatsbyContentfulFluid_tracedSVG
-            }
+            description
           }
         }
       }
