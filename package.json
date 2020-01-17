@@ -1,12 +1,14 @@
 {
-  "name": "gatsby-contentful-starter",
-  "description": "Starter Contentful Gatsby Blog",
+  "name": "brancatisano-architect",
+  "description": "Architect implementation of Gatsby + Contentful",
   "version": "1.0.0",
-  "author": "Stefan Judis <stefanjudis@gmail.com>",
+  "author": "Jez Milledge <jez.milledge@gmail.com>",
   "bugs": {
-    "url": "https://github.com/contentful-userland/gatsby-contentful-starter/issues"
+    "url": "https://github.com/jezzzm/brancatisano/issues"
   },
   "dependencies": {
+    "@emotion/core": "^10.0.27",
+    "@emotion/styled": "^10.0.27",
     "gatsby-image": "^2.0.38",
     "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-plugin-sharp": "^2.0.34",
@@ -33,7 +35,7 @@
     "rimraf": "^2.6.3",
     "yargs-parser": "^13.0.0"
   },
-  "homepage": "https://github.com/contentful-userland/gatsby-contentful-starter#readme",
+  "homepage": "https://github.com/jezzzm/brancatisano#readme",
   "keywords": [
     "gatsby",
     "contentful"
@@ -42,7 +44,7 @@
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/contentful-userland/gatsby-contentful-starter.git"
+    "url": "git+https://github.com/jezzzm/brancatisano.git"
   },
   "scripts": {
     "dev": "npm run develop",
