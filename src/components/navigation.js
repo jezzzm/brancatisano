@@ -1,19 +1,19 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import styled from '@emotion/styled';
-import { colors } from '../../constants';
+import { colors, widths } from '../../constants';
 import Logo from './logo';
 
 const StyledNavContainer = styled.div`
   position: sticky;
   top: 0;
-  width: 100%;
   z-index: 100;
-`;
-const StyledNav = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  height: 65px;
+  width: 100vw;
+  left: 0;
+  right: 0;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  max-height: 65px;
   background: ${colors.white};
   border-bottom: 1px solid;
   border-image-source: linear-gradient(
@@ -23,6 +23,16 @@ const StyledNav = styled.nav`
     transparent
   );
   border-image-slice: 1;
+`;
+const StyledNav = styled.nav`
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: ${widths.max}px;
+  @media (max-width: ${widths.max}px) {
+    padding: 0 1em;
+  }
 `;
 
 const StyledLinkContainer = styled.div`
@@ -39,6 +49,10 @@ const StyledNavLink = styled(Link)`
     text-decoration: none;
     color: ${colors.secondary};
   }
+  @media (max-width: ${widths.sm}px) {
+    margin-left: 0.7em;
+    font-size: 0.8em;
+  }
 `;
 
 export default () => (
@@ -46,7 +60,6 @@ export default () => (
     <StyledNav role="navigation">
       <Logo />
       <StyledLinkContainer>
-        <StyledNavLink to="/">HOME</StyledNavLink>
         <StyledNavLink to="/projects/">PROJECTS</StyledNavLink>
         <StyledNavLink to="/concepts/">CONCEPTS</StyledNavLink>
         <StyledNavLink to="/about/">ABOUT</StyledNavLink>

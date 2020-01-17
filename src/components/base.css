@@ -42,6 +42,7 @@ a:hover {
 .wrapper {
   width: calc(100% - 10vmin);
   margin: 0 auto;
+  max-width: 1150px;
   padding: 5vmin 0;
 }
 
