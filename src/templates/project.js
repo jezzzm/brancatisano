@@ -4,8 +4,81 @@ import Helmet from 'react-helmet';
 import get from 'lodash/get';
 import Img from 'gatsby-image';
 import Layout from '../components/layout';
+import styled from '@emotion/styled';
+import { colors, widths } from '../../constants';
+import LocationMap from '../components/location-map';
 
-import heroStyles from '../components/hero.module.css';
+const ProjectTitle = styled.h1`
+  font-size: 2em;
+  padding: 2em 0;
+  @media (max-width: ${widths.sm}px) {
+    padding: 1em 0;
+  }
+`;
+
+const TagsContainer = styled.div`
+  grid-area: tags;
+  padding: 1em;
+  border-bottom: 1px solid ${colors.light};
+  @media (max-width: ${widths.sm}px) {
+    border: 0;
+    padding: 0 1em 1em 0;
+  }
+`;
+
+const DateContainer = styled.div`
+  grid-area: date;
+  padding: 1em;
+  @media (max-width: ${widths.sm}px) {
+    border-left: 1px solid ${colors.light};
+    padding: 0 0 1em 1em;
+  }
+`;
+
+const MapContainer = styled.div`
+  grid-area: map;
+  border-left: 1px solid ${colors.light};
+  padding: 1em;
+  @media (max-width: ${widths.sm}px) {
+    border: 0;
+    border-top: 1px solid ${colors.light};
+    padding: 1em 0;
+  }
+`;
+const MetaContainer = styled.aside`
+  display: grid;
+  grid-template-areas:
+    'tags map map map'
+    'date map map map';
+  margin-bottom: 2em;
+  label {
+    display: block;
+    font-size: 0.8em;
+    color: ${colors.grey};
+    letter-spacing: 1.5px;
+  }
+  p,
+  time {
+    font-weight: bolder;
+  }
+  @media (max-width: ${widths.sm}px) {
+    grid-template-areas:
+      'tags date'
+      'map map'
+      'map map';
+    margin-bottom: 1em;
+  }
+`;
+
+const StyledImg = styled(Img)`
+  height: 61.8vh;
+  max-height: 400px;
+`;
+
+const Description = styled.div`
+  max-width: 750px;
+  margin: 0 auto;
+`;
 
 class ProjectTemplate extends React.Component {
   render() {
@@ -51,39 +124,40 @@ class ProjectTemplate extends React.Component {
                 content: siteMeta.title,
               },
             ]}
+            link={[
+              {
+                rel: 'stylesheet',
+                href: 'https://unpkg.com/leaflet@1.6.0/dist/leaflet.css',
+              },
+            ]}
           />
-          <div className={heroStyles.hero}>
-            <Img
-              className={heroStyles.heroImage}
-              alt={project.hero.description}
-              title={project.hero.description}
-              fluid={project.hero.fluid}
-            />
-          </div>
+          <StyledImg
+            alt={project.hero.description}
+            title={project.hero.description}
+            fluid={project.hero.fluid}
+          />
           <div className="wrapper">
-            <h1 className="section-headline">{project.title}</h1>
-            <p
-              style={{
-                display: 'block',
-              }}
-            >
-              Tags: {project.tags.join(', ')}
-            </p>
-            <p
-              style={{
-                display: 'block',
-              }}
-            >
-              Completion: {project.completion}
-            </p>
-            <p
-              style={{
-                display: 'block',
-              }}
-            >
-              {`Location: ${project.location.lat}, ${project.location.lon}`}
-            </p>
-            <div
+            <ProjectTitle>{project.title}</ProjectTitle>
+            <MetaContainer>
+              <TagsContainer>
+                <label>TAGS</label>
+                <p>{project.tags.join(', ')}</p>
+              </TagsContainer>
+              <DateContainer>
+                <label>COMPLETION</label>
+                <time>{project.completion}</time>
+              </DateContainer>
+              <MapContainer>
+                <label>LOCATION</label>
+                <LocationMap
+                  lat={project.location.lat}
+                  lon={project.location.lon}
+                  title={project.title}
+                />
+              </MapContainer>
+            </MetaContainer>
+
+            <Description
               dangerouslySetInnerHTML={{
                 __html: project.description.childMarkdownRemark.html,
               }}

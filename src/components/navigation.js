@@ -15,14 +15,7 @@ const StyledNavContainer = styled.div`
   margin-right: -50vw;
   max-height: 65px;
   background: ${colors.white};
-  border-bottom: 1px solid;
-  border-image-source: linear-gradient(
-    90deg,
-    transparent,
-    ${colors.primary},
-    transparent
-  );
-  border-image-slice: 1;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.05);
 `;
 const StyledNav = styled.nav`
   display: flex;
@@ -31,7 +24,7 @@ const StyledNav = styled.nav`
   margin: 0 auto;
   max-width: ${widths.max}px;
   @media (max-width: ${widths.max}px) {
-    padding: 0 1em;
+    padding: 0 0.7em;
   }
 `;
 
