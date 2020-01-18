@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
+import React from 'react';
+import styled from '@emotion/styled';
 
-export default class LocationMap extends Component {
-  render() {
-    const { lat, lon, title } = this.props;
-    return (
-      <Map center={[lat, lon]} zoom="12" zoomControl={false}>
-        <TileLayer
-          attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-      </Map>
-    );
-  }
-}
+const Map = styled.div`
+  height: 200px;
+  width: 100%;
+  background: pink;
+  margin: 1em 0 0;
+`;
+
+export default ({ lat, lon, title }) => (
+  <Map>
+    map goes here with lat: {lat} lon: {lon} <br />
+    title: {title}
+  </Map>
+);
