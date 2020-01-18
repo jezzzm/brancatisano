@@ -8,17 +8,26 @@ import styled from '@emotion/styled';
 import { colors, widths } from '../../constants';
 import LocationMap from '../components/location-map';
 
-const ProjectTitle = styled.h1`
-  font-size: 2em;
+const ProjectTitle = styled.div`
   padding: 2em 0;
-  @media (max-width: ${widths.sm}px) {
-    padding: 1em 0;
+  label {
+    font-size: 1.2em;
+    color: ${colors.secondary};
+    letter-spacing: 1.5px;
+  }
+  h1 {
+    font-size: 4em;
+    line-height: 1.2;
+    color: ${colors.primary};
+    @media (max-width: ${widths.sm}px) {
+      font-size: 3em;
+    }
   }
 `;
 
 const TagsContainer = styled.div`
   grid-area: tags;
-  padding: 1em;
+  padding: 0 1em 1em 0;
   border-bottom: 1px solid ${colors.light};
   @media (max-width: ${widths.sm}px) {
     border: 0;
@@ -28,7 +37,7 @@ const TagsContainer = styled.div`
 
 const DateContainer = styled.div`
   grid-area: date;
-  padding: 1em;
+  padding: 1em 1em 0 0;
   @media (max-width: ${widths.sm}px) {
     border-left: 1px solid ${colors.light};
     padding: 0 0 1em 1em;
@@ -38,7 +47,7 @@ const DateContainer = styled.div`
 const MapContainer = styled.div`
   grid-area: map;
   border-left: 1px solid ${colors.light};
-  padding: 1em;
+  padding: 0 1em;
   @media (max-width: ${widths.sm}px) {
     border: 0;
     border-top: 1px solid ${colors.light};
@@ -50,7 +59,7 @@ const MetaContainer = styled.aside`
   grid-template-areas:
     'tags map map map'
     'date map map map';
-  margin-bottom: 2em;
+  margin: 1em 0;
   label {
     display: block;
     font-size: 0.8em;
@@ -137,7 +146,10 @@ class ProjectTemplate extends React.Component {
             fluid={project.hero.fluid}
           />
           <div className="wrapper">
-            <ProjectTitle>{project.title}</ProjectTitle>
+            <ProjectTitle>
+              <label>PROJECT</label>
+              <h1>{project.title}</h1>
+            </ProjectTitle>
             <MetaContainer>
               <TagsContainer>
                 <label>TAGS</label>
@@ -152,7 +164,6 @@ class ProjectTemplate extends React.Component {
                 <LocationMap
                   lat={project.location.lat}
                   lon={project.location.lon}
-                  title={project.title}
                 />
               </MapContainer>
             </MetaContainer>
