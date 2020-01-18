@@ -11,7 +11,7 @@ const Map = styled.div`
 export default ({ lat, lon, title }) => (
   <Map>
     <GoogleMapReact
-      bootstrapURLKeys={{ key: process.env.GOOGLE_MAPS_API_KEY }}
+      bootstrapURLKeys={{ key: process.env.GATSBY_GOOGLE_MAPS_API_KEY }}
       defaultCenter={{
         lat: lat,
         lng: lon,
