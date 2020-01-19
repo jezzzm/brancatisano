@@ -1,38 +1,68 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
-import get from 'lodash/get';
+import { graphql } from 'gatsby';
+import Img from 'gatsby-image';
 import Helmet from 'react-helmet';
-import styles from './blog.module.css';
+import styled from '@emotion/styled';
+import { colors } from '../../constants';
+
 import Layout from '../components/layout';
 import ProjectPreview from '../components/project-preview';
+import MainWrapper from '../components/main-wrapper';
 
-class ProjectIndex extends React.Component {
-  render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title');
-    const projects = get(this, 'props.data.allContentfulProject.edges');
+const SectionTitle = styled.label`
+  font-size: 1.2em;
+  color: ${colors.secondary};
+  letter-spacing: 1.5px;
+`;
 
-    return (
-      <Layout location={this.props.location}>
-        <div style={{ background: '#fff' }}>
-          <Helmet title={siteTitle} />
-          <div className={styles.hero}>Projects</div>
-          <div className="wrapper">
-            <h2 className="section-headline">Recent Projects</h2>
-            <ul className="article-list">
-              {projects.map(({ node }) => {
-                return (
-                  <li key={node.slug}>
-                    <ProjectPreview project={node} />
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        </div>
-      </Layout>
-    );
-  }
-}
+const ArticleList = styled.div`
+  margin: 1em 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-gap: 2rem;
+`;
+
+const Blurb = styled.p`
+  text-align: center;
+  font-size: 1.5em;
+  margin: 3em 0;
+`;
+
+const SectionHero = styled(Img)`
+  height: 61.8vh;
+  max-height: 400px;
+`;
+
+const ProjectIndex = ({ data }) => {
+  const siteTitle = data.site.siteMetadata.title;
+  const projects = data.allContentfulProject.edges;
+  const hero = data.allContentfulAsset.edges[0].node;
+  return (
+    <Layout>
+      <Helmet
+        title={siteTitle}
+        meta={[{ name: 'description', content: `Projects at ${siteTitle}` }]}
+      />
+      <SectionHero
+        alt="Image representing projects section"
+        fluid={hero.fluid}
+      />
+      <MainWrapper>
+        <Blurb>"Short blurb about projects, generally."</Blurb>
+        <SectionTitle>PROJECTS</SectionTitle>
+        <ArticleList>
+          {projects.map(({ node }) => {
+            return (
+              <div key={node.slug}>
+                <ProjectPreview project={node} />
+              </div>
+            );
+          })}
+        </ArticleList>
+      </MainWrapper>
+    </Layout>
+  );
+};
 
 export default ProjectIndex;
 
@@ -57,6 +87,16 @@ export const pageQuery = graphql`
               ...GatsbyContentfulFluid_tracedSVG
             }
             description
+          }
+        }
+      }
+    }
+    allContentfulAsset(filter: { title: { eq: "projects" } }) {
+      edges {
+        node {
+          fluid(maxWidth: 1440, quality: 100, background: "rgb:000000") {
+            ...GatsbyContentfulFluid_tracedSVG
+            src
           }
         }
       }
