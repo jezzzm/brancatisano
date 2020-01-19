@@ -1,101 +1,68 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Helmet from 'react-helmet';
-import get from 'lodash/get';
+
+//styles
+import styled from '@emotion/styled';
+
+//components
 import Img from 'gatsby-image';
 import Layout from '../components/layout';
+import ArticleMetaBox from '../components/article-meta-box';
+import ArticleTitle from '../components/article-title-box';
+import ArticleHelmet from '../components/article-helmet';
+import MainWrapper from '../components/main-wrapper';
 
-import heroStyles from '../components/hero.module.css';
+const HeroImage = styled(Img)`
+  height: 61.8vh;
+  max-height: 400px;
+`;
 
-class ConceptTemplate extends React.Component {
-  render() {
-    const concept = get(this.props, 'data.contentfulConcept');
-    const siteMeta = get(this.props, 'data.site.siteMetadata');
+const Content = styled.article`
+  max-width: 750px;
+  margin: 0 auto;
+`;
 
-    return (
-      <Layout location={this.props.location}>
-        <div style={{ background: '#fff' }}>
-          <Helmet
-            title={`${concept.title} | ${siteMeta.author}`}
-            meta={[
-              {
-                name: `description`,
-                content: concept.short,
-              },
-              {
-                name: `twitter:card`,
-                value: `summary`,
-              },
-              {
-                property: `og:title`,
-                content: concept.title,
-              },
-              {
-                property: `og:type`,
-                content: `article`,
-              },
-              {
-                property: `og:url`,
-                content: `${siteMeta.baseURL}/concept/${concept.slug}/`,
-              },
-              {
-                property: `og:image`,
-                content: `https:${concept.hero.fluid.src}`,
-              },
-              {
-                property: `og:description`,
-                content: concept.short,
-              },
-              {
-                property: `og:site_name`,
-                content: siteMeta.title,
-              },
-            ]}
-          />
-          <div className={heroStyles.hero}>
-            <Img
-              className={heroStyles.heroImage}
-              alt={concept.hero.description}
-              title={concept.hero.description}
-              fluid={concept.hero.fluid}
-            />
-          </div>
-          <div className="wrapper">
-            <h1 className="section-headline">{concept.title}</h1>
-            <p
-              style={{
-                display: 'block',
-              }}
-            >
-              Tags: {concept.tags.join(', ')}
-            </p>
-            <p
-              style={{
-                display: 'block',
-              }}
-            >
-              Created: {concept.created}
-            </p>
-            {concept.location && (
-              <p
-                style={{
-                  display: 'block',
-                }}
-              >
-                {`Location: ${concept.location.lat}, ${concept.location.lon}`}
-              </p>
-            )}
-            <div
-              dangerouslySetInnerHTML={{
-                __html: concept.description.childMarkdownRemark.html,
-              }}
-            />
-          </div>
-        </div>
-      </Layout>
-    );
-  }
-}
+const ConceptTemplate = props => {
+  const concept = props.data.contentfulConcept;
+  const siteMeta = props.data.site.siteMetadata;
+  return (
+    <Layout>
+      <ArticleHelmet
+        title={concept.title}
+        author={siteMeta.author}
+        description={concept.short}
+        baseURL={siteMeta.baseURL}
+        articleType={concept.sys.contentType.sys.id}
+        slug={concept.slug}
+        imageSrc={concept.hero.fluid.src}
+        siteTitle={siteMeta.title}
+      />
+      <HeroImage
+        alt={concept.hero.description}
+        title={concept.hero.description}
+        fluid={concept.hero.fluid}
+      />
+      <MainWrapper>
+        <ArticleTitle
+          articleType={concept.sys.contentType.sys.id}
+          title={concept.title}
+        />
+        <ArticleMetaBox
+          dateType="CREATION"
+          tags={concept.tags}
+          date={concept.created}
+          lat={concept.location.lat}
+          lon={concept.location.lon}
+        />
+        <Content
+          dangerouslySetInnerHTML={{
+            __html: concept.description.childMarkdownRemark.html,
+          }}
+        />
+      </MainWrapper>
+    </Layout>
+  );
+};
 
 export default ConceptTemplate;
 
@@ -129,6 +96,13 @@ export const pageQuery = graphql`
       location {
         lat
         lon
+      }
+      sys {
+        contentType {
+          sys {
+            id
+          }
+        }
       }
     }
   }
