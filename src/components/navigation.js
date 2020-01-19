@@ -14,7 +14,7 @@ const StyledNavContainer = styled.div`
   margin-left: -50vw;
   margin-right: -50vw;
   max-height: 65px;
-  background: ${colors.white};
+  background: ${colors.primary};
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.05);
 `;
 const StyledNav = styled.nav`
@@ -36,7 +36,7 @@ const StyledLinkContainer = styled.div`
 const StyledNavLink = styled(Link)`
   text-align: right;
   margin-left: 1em;
-  color: ${colors.primary};
+  color: ${colors.white};
   transition: 0.15s all;
   &:hover {
     text-decoration: none;

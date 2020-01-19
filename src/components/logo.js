@@ -4,7 +4,11 @@ import { colors, widths } from '../../constants';
 import { Link } from 'gatsby';
 
 const SB = styled.span`
-  color: ${colors.primary};
+  color: ${colors.white};
+  transition: 0.15s all;
+  &:hover {
+    color: ${colors.secondary};
+  }
 `;
 const A = styled.span`
   color: ${colors.secondary};
@@ -17,11 +21,8 @@ const StyledHeading = styled.h1`
 `;
 
 const StyledLogoLink = styled(Link)`
-  transition: 0.15s text-shadow;
-  vertical-align: middle;
   &:hover {
     text-decoration: none;
-    text-shadow: 0px 0px 5px ${colors.light};
   }
 `;
 
