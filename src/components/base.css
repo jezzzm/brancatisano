@@ -5,6 +5,8 @@ body {
   font-size: 1em;
   font-weight: lighter;
   line-height: 1.65;
+  background: #4a304b;
+  color: #424242;
 }
 
 * {
@@ -54,7 +56,7 @@ a:hover {
   grid-gap: 2rem;
 }
 
-.list-inline {
+/* .list-inline {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -62,4 +64,4 @@ a:hover {
 
 .list-inline li {
   display: inline-block;
-}
+} */
