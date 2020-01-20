@@ -12,6 +12,7 @@ const StyledMain = styled.main`
 const StyledMainContainer = styled.div`
   width: 100%;
   background: ${colors.white};
+  padding-bottom: 4em;
 `;
 
 const MainWrapper = ({ children }) => (

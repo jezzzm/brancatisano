@@ -46,6 +46,7 @@ const ProjectIndex = ({ data }) => {
       <SectionHero
         alt="Image representing projects section"
         fluid={hero.fluid}
+        fadeIn={true}
       />
       <MainWrapper>
         <Blurb>"Short blurb about projects, generally."</Blurb>
@@ -83,8 +84,8 @@ export const pageQuery = graphql`
           short
           tags
           hero {
-            fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
-              ...GatsbyContentfulFluid_tracedSVG
+            fluid(resizingBehavior: SCALE, maxWidth: 350) {
+              ...GatsbyContentfulFluid_noBase64
             }
             description
           }
@@ -95,7 +96,7 @@ export const pageQuery = graphql`
       edges {
         node {
           fluid(maxWidth: 1440, quality: 100, background: "rgb:000000") {
-            ...GatsbyContentfulFluid_tracedSVG
+            ...GatsbyContentfulFluid_noBase64
             src
           }
         }

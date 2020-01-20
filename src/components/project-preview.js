@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 import Img from 'gatsby-image';
 import styled from '@emotion/styled';
-import { colors } from '../../constants';
+import { colors, widths } from '../../constants';
 
 const TileTitle = styled.h3`
   font-size: 1.5em;
@@ -35,6 +35,13 @@ const Tile = styled(Link)`
   }
   border: 1px solid ${colors.light};
   padding: 2rem;
+  @media (max-width: ${widths.sm}px) {
+    border: 0;
+    padding: 2rem 0;
+    &:hover {
+      border: 0;
+    }
+  }
 `;
 
 const TileImage = styled(Img)`
@@ -43,7 +50,11 @@ const TileImage = styled(Img)`
 
 const ArticleTile = ({ project }) => (
   <Tile to={`/project/${project.slug}/`}>
-    <TileImage alt={project.hero.description} fluid={project.hero.fluid} />
+    <TileImage
+      alt={project.hero.description}
+      fluid={project.hero.fluid}
+      fadeIn={true}
+    />
     <TileTitle>{project.title}</TileTitle>
     <small>{project.completion}</small>
     <TileContent>{project.short}</TileContent>

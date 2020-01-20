@@ -38,9 +38,11 @@ const StyledNavLink = styled(Link)`
   margin-left: 1em;
   color: ${colors.white};
   transition: 0.15s all;
-  &:hover {
-    text-decoration: none;
-    color: ${colors.secondary};
+  @media (hover: hover) {
+    &:hover {
+      text-decoration: none;
+      color: ${colors.secondary};
+    }
   }
   @media (max-width: ${widths.sm}px) {
     margin-left: 0.7em;

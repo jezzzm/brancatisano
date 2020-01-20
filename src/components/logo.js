@@ -6,8 +6,10 @@ import { Link } from 'gatsby';
 const SB = styled.span`
   color: ${colors.white};
   transition: 0.15s all;
-  &:hover {
-    color: ${colors.secondary};
+  @media (hover: hover) {
+    &:hover {
+      color: ${colors.secondary};
+    }
   }
 `;
 const A = styled.span`
