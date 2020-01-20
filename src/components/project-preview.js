@@ -34,12 +34,6 @@ const Tile = styled(Link)`
   }
   border: 1px solid ${colors.light};
   padding: 2rem;
-  @media (max-width: ${widths.sm}px) {
-    border: 0;
-    padding: 2rem 0;
-    &:hover {
-      border: 0;
-    }
   }
 `;
 
