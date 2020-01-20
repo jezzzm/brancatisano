@@ -40,10 +40,12 @@ const InlineNavLink = styled(Link)`
   text-align: right;
   margin-left: 1em;
   color: ${colors.white};
+  &:hover {
+    text-decoration: none;
+  }
   transition: 0.15s all;
   @media (hover: hover) {
     &:hover {
-      text-decoration: none;
       color: ${colors.secondary};
     }
   }
@@ -73,6 +75,12 @@ const FixedNavLink = styled(Link)`
   font-size: 2em;
   color: ${colors.white};
   transition: 0.15s all;
+  &:hover {
+    text-decoration: none;
+  }
+  &:active {
+    color: ${colors.secondary};
+  }
   @media (hover: hover) {
     &:hover {
       text-decoration: none;
