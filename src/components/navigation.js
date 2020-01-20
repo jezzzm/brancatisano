@@ -93,13 +93,17 @@ const FixedNavLink = styled(Link)`
   }
 `;
 
-const StyledSVG = styled(ReactSVG)`
-  text-align: left;
-  width: max-content;
+const StyledLogo = styled(Link)`
   svg {
     height: 40px;
     width: 92px;
     margin: 0.5em 0 0.3em;
+    path {
+      transition: 0.2s all;
+    }
+    &:hover path {
+      fill: ${colors.white} !important;
+    }
   }
 `;
 
@@ -119,8 +123,11 @@ export default () => {
     <StyledNavContainer>
       <StyledNav role="navigation">
         {/* <Logo /> */}
-        <StyledSVG src="./brancatisano.svg" />
+        <StyledLogo to="/">
+          <ReactSVG src="./brancatisano.svg" />
+        </StyledLogo>
         <InlineLinkContainer>
+          <InlineNavLink to="/">HOME</InlineNavLink>
           <InlineNavLink to="/projects/">PROJECTS</InlineNavLink>
           <InlineNavLink to="/concepts/">CONCEPTS</InlineNavLink>
           <InlineNavLink to="/about/">ABOUT</InlineNavLink>
