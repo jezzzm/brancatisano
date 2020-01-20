@@ -18,7 +18,7 @@ const SectionTitle = styled.label`
 const ArticleList = styled.div`
   margin: 1em 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 2rem;
 `;
 

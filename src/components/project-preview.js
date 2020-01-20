@@ -27,7 +27,6 @@ const TileContent = styled.p`
 
 const Tile = styled(Link)`
   display: block;
-  height: 100%;
   transition: 0.15s all;
   &:hover {
     text-decoration: none;
@@ -48,19 +47,22 @@ const TileImage = styled(Img)`
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 `;
 
-const ArticleTile = ({ project }) => (
-  <Tile to={`/project/${project.slug}/`}>
-    <TileImage
-      alt={project.hero.description}
-      fluid={project.hero.fluid}
-      fadeIn={true}
-    />
-    <TileTitle>{project.title}</TileTitle>
-    <small>{project.completion}</small>
-    <TileContent>{project.short}</TileContent>
-    {project.tags &&
-      project.tags.map(tag => <TileTag key={tag}>{tag}</TileTag>)}
-  </Tile>
-);
+const ArticleTile = ({ project }) => {
+  const newImageSizes = { ...project.hero.sizes };
+  return (
+    <Tile to={`/project/${project.slug}/`}>
+      <TileImage
+        alt={project.hero.description}
+        fluid={project.hero.fluid}
+        fadeIn={true}
+      />
+      <TileTitle>{project.title}</TileTitle>
+      <small>{project.completion}</small>
+      <TileContent>{project.short}</TileContent>
+      {project.tags &&
+        project.tags.map(tag => <TileTag key={tag}>{tag}</TileTag>)}
+    </Tile>
+  );
+};
 
 export default ArticleTile;
