@@ -30,9 +30,9 @@ const StyledLogoLink = styled(Link)`
 
 export default () => (
   <StyledLogoLink to="/">
-    <StyledHeading>
-      <SB>sb</SB>
-      <A>a</A>
+    <StyledHeading className="logo">
+      <SB>SB</SB>
+      <A>A</A>
     </StyledHeading>
   </StyledLogoLink>
 );

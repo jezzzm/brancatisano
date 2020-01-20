@@ -3,7 +3,9 @@ import { Link } from 'gatsby';
 import styled from '@emotion/styled';
 import { colors, widths } from '../../constants';
 import Logo from './logo';
+import LogoSVG from './brancatisano.svg';
 import Burger from './burger';
+import { ReactSVG } from 'react-svg';
 
 const StyledNavContainer = styled.div`
   position: sticky;
@@ -91,6 +93,16 @@ const FixedNavLink = styled(Link)`
   }
 `;
 
+const StyledSVG = styled(ReactSVG)`
+  text-align: left;
+  width: max-content;
+  svg {
+    height: 40px;
+    width: 92px;
+    margin: 0.5em 0 0.3em;
+  }
+`;
+
 export default () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -106,8 +118,8 @@ export default () => {
   return (
     <StyledNavContainer>
       <StyledNav role="navigation">
-        <Logo />
-
+        {/* <Logo /> */}
+        <StyledSVG src="./brancatisano.svg" />
         <InlineLinkContainer>
           <InlineNavLink to="/projects/">PROJECTS</InlineNavLink>
           <InlineNavLink to="/concepts/">CONCEPTS</InlineNavLink>
