@@ -7,16 +7,17 @@ const BurgerBox = styled.div`
   flex-direction: column;
   justify-content: center;
   transition: 0.3s all;
+  cursor: pointer;
   z-index: 1000;
   &.open div:first-of-type {
-    -webkit-transform: rotate(-45deg) translate(-4px, 4px);
+    -webkit-transform: rotate(-45deg) translate(-7px, 7px);
     transform: rotate(-45deg) translate(-7px, 7px);
   }
   &.open div:nth-of-type(2) {
     opacity: 0;
   }
   &.open div:last-of-type {
-    -webkit-transform: rotate(45deg) translate(-6px, -6px);
+    -webkit-transform: rotate(45deg) translate(-7px, -7px);
     transform: rotate(45deg) translate(-7px, -7px);
   }
 

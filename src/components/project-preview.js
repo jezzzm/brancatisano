@@ -27,6 +27,7 @@ const TileContent = styled.p`
 
 const Tile = styled(Link)`
   display: block;
+  height: 100%;
   transition: 0.15s all;
   &:hover {
     text-decoration: none;

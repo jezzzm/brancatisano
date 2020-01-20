@@ -11,6 +11,7 @@ import ArticleMetaBox from '../components/article-meta-box';
 import ArticleTitle from '../components/article-title-box';
 import ArticleHelmet from '../components/article-helmet';
 import MainWrapper from '../components/main-wrapper';
+import MoreButton from '../components/more-button';
 
 const HeroImage = styled(Img)`
   height: 61.8vh;
@@ -19,7 +20,7 @@ const HeroImage = styled(Img)`
 
 const Content = styled.article`
   max-width: 750px;
-  margin: 0 auto;
+  margin: 0 auto 4em;
 `;
 
 const ConceptTemplate = props => {
@@ -59,6 +60,7 @@ const ConceptTemplate = props => {
             __html: concept.description.childMarkdownRemark.html,
           }}
         />
+        <MoreButton link="concepts" text="more concepts" />
       </MainWrapper>
     </Layout>
   );

@@ -1,12 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { colors, widths } from '../../constants';
+import { Link } from 'gatsby';
 
-// const StyledFooter = styled.footer`
-//   background: ${colors.white};
-//   padding-top: 4em;
-//   width: 100%;
-// `;
 const FooterContentContainer = styled.footer`
   width: 100%;
   background: ${colors.primary};
@@ -19,10 +15,16 @@ const FooterContent = styled.div`
   margin: 0 auto;
   padding: 4em 1em;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: 'left center right';
+  @media (max-width: ${widths.sm}px) {
+    grid-template-areas:
+      'left center'
+      'left right';
+  }
 `;
 
 const LeftFooter = styled.nav`
+  grid-area: left;
   a {
     display: block;
     font-weight: bolder;
@@ -31,9 +33,14 @@ const LeftFooter = styled.nav`
 `;
 
 const CentralFooter = styled.div`
+  grid-area: center;
   text-align: center;
+  @media (max-width: ${widths.sm}px) {
+    text-align: right;
+  }
 `;
 const RightFooter = styled.div`
+  grid-area: right;
   text-align: right;
 `;
 
@@ -48,11 +55,11 @@ const Footer = () => {
     <FooterContentContainer>
       <FooterContent>
         <LeftFooter>
-          <a href="#">Home</a>
-          <a href="#">Projects</a>
-          <a href="#">Concepts</a>
-          <a href="#">About</a>
-          <a href="#">Contact</a>
+          <Link to="/">Home</Link>
+          <Link to="/projects">Projects</Link>
+          <Link to="/concepts">Concepts</Link>
+          <Link to="/about">About</Link>
+          <Link to="/contact">Contact</Link>
         </LeftFooter>
         <CentralFooter>
           <p>{`©${year} Stephanie Brancatisano`}</p>
@@ -63,7 +70,7 @@ const Footer = () => {
             Website by{' '}
             <a
               href="https://zej.com.au/"
-              title="To developer's website"
+              title="To the developer's website"
               target="_blank"
             >
               <strong>zej</strong>
