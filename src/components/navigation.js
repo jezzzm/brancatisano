@@ -55,23 +55,23 @@ const InlineNavLink = styled(Link)`
 `;
 
 const FixedLinkContainer = styled.div`
-  @media (max-width: ${widths.sm}px) {
-    position: fixed;
-    display: flex;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: ${colors.primary};
-    z-index: 500;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: ${colors.primary};
+  z-index: 500;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 const FixedNavLink = styled(Link)`
   display: block;
+  width: 100%;
+  text-align: center;
   font-size: 2em;
   color: ${colors.white};
   transition: 0.15s all;
@@ -116,7 +116,7 @@ export default () => {
         </InlineLinkContainer>
         <Burger open={isOpen} clicked={toggleMenu} />
         {isOpen && (
-          <FixedLinkContainer>
+          <FixedLinkContainer onClick={toggleMenu}>
             <FixedNavLink to="/" onClick={toggleMenu}>
               HOME
             </FixedNavLink>
