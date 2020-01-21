@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { colors, widths } from '../../constants';
 
 const StyledMain = styled.main`
-  max-width: ${widths.max}px;
+  max-width: ${widths.max};
   width: 100%;
   padding: 1em;
   margin: 0 auto;

@@ -1,38 +1,31 @@
 import React from 'react';
-import styled from '@emotion/styled';
-import { colors, widths } from '../../constants';
 import { Link } from 'gatsby';
 
-const SB = styled.span`
-  color: ${colors.white};
-  transition: 0.15s all;
-  @media (hover: hover) {
-    &:hover {
-      color: ${colors.secondary};
-    }
-  }
-`;
-const A = styled.span`
-  color: ${colors.secondary};
-`;
-const StyledHeading = styled.h1`
-  font-size: 36px;
-  @media (max-width: ${widths.xs}px) {
-    font-size: 28px;
-  }
-`;
+//styles
+import styled from '@emotion/styled';
+import { colors, widths } from '../../constants';
+import { ReactSVG } from 'react-svg';
 
 const StyledLogoLink = styled(Link)`
-  &:hover {
-    text-decoration: none;
+  svg {
+    height: 35px;
+    width: 80px;
+    margin: 0.8em 0 0.4em;
+    path {
+      transition: 0.2s all;
+    }
+    &:hover path {
+      fill: ${colors.light} !important;
+    }
+    @media (max-width: ${widths.sm}) {
+      height: 28px;
+      width: 70px;
+    }
   }
 `;
 
 export default () => (
   <StyledLogoLink to="/">
-    <StyledHeading className="logo">
-      <SB>SB</SB>
-      <A>A</A>
-    </StyledHeading>
+    <ReactSVG src="./brancatisano.svg" />
   </StyledLogoLink>
 );

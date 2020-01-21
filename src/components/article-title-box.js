@@ -13,7 +13,7 @@ const ArticleTitle = styled.div`
     font-size: 4em;
     line-height: 1.2;
     color: ${colors.primary};
-    @media (max-width: ${widths.sm}px) {
+    @media (max-width: ${widths.sm}) {
       font-size: 3em;
     }
   }

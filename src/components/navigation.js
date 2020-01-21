@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'gatsby';
+
+//styles
 import styled from '@emotion/styled';
 import { colors, widths } from '../../constants';
+
+//components
 import Logo from './logo';
-import Burger from './burger';
-import { ReactSVG } from 'react-svg';
-import sba from './brancatisano.svg';
+import NavLinks from './nav-links';
+
 const StyledNavContainer = styled.div`
   position: sticky;
   top: 0;
@@ -13,96 +16,17 @@ const StyledNavContainer = styled.div`
   width: 100vw;
   left: 0;
   right: 0;
-  max-height: 65px;
+  max-height: 60px;
   background: ${colors.primary};
-  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.05);
 `;
 const StyledNav = styled.nav`
   display: flex;
   height: 100%;
   justify-content: space-between;
   margin: 0 auto;
-  max-width: ${widths.max}px;
-  @media (max-width: ${widths.max}px) {
+  max-width: ${widths.max};
+  @media (max-width: ${widths.max}) {
     padding: 0 0.7em;
-  }
-`;
-
-const InlineLinkContainer = styled.div`
-  display: flex;
-  align-items: center;
-  transition: 0.3s all;
-  @media (max-width: ${widths.sm}px) {
-    display: none;
-  }
-`;
-
-const InlineNavLink = styled(Link)`
-  text-align: right;
-  margin-left: 1em;
-  color: ${colors.white};
-  &:hover {
-    text-decoration: none;
-  }
-  transition: 0.15s all;
-  @media (hover: hover) {
-    &:hover {
-      color: ${colors.secondary};
-    }
-  }
-  @media (max-width: ${widths.sm}px) {
-    display: none;
-  }
-`;
-
-const FixedLinkContainer = styled.div`
-  position: fixed;
-  display: flex;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: ${colors.primary};
-  z-index: 500;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const FixedNavLink = styled(Link)`
-  display: block;
-  width: 100%;
-  text-align: center;
-  font-size: 2em;
-  color: ${colors.white};
-  transition: 0.15s all;
-  &:hover {
-    text-decoration: none;
-  }
-  &:active {
-    color: ${colors.secondary};
-  }
-  @media (hover: hover) {
-    &:hover {
-      text-decoration: none;
-      color: ${colors.secondary};
-    }
-  }
-
-  }
-`;
-
-const StyledLogo = styled(Link)`
-  svg {
-    height: 35px;
-    width: 80px;
-    margin: 0.8em 0 0.4em;
-    path {
-      transition: 0.2s all;
-    }
-    &:hover path {
-      fill: ${colors.white} !important;
-    }
   }
 `;
 
@@ -121,37 +45,8 @@ export default () => {
   return (
     <StyledNavContainer>
       <StyledNav role="navigation">
-        {/* <Logo /> */}
-        <StyledLogo to="/">
-          <ReactSVG src={sba} />
-        </StyledLogo>
-        <InlineLinkContainer>
-          <InlineNavLink to="/">HOME</InlineNavLink>
-          <InlineNavLink to="/projects/">PROJECTS</InlineNavLink>
-          <InlineNavLink to="/concepts/">CONCEPTS</InlineNavLink>
-          <InlineNavLink to="/about/">ABOUT</InlineNavLink>
-          <InlineNavLink to="/contact/">CONTACT</InlineNavLink>
-        </InlineLinkContainer>
-        <Burger open={isOpen} clicked={toggleMenu} />
-        {isOpen && (
-          <FixedLinkContainer onClick={toggleMenu}>
-            <FixedNavLink to="/" onClick={toggleMenu}>
-              HOME
-            </FixedNavLink>
-            <FixedNavLink to="/projects/" onClick={toggleMenu}>
-              PROJECTS
-            </FixedNavLink>
-            <FixedNavLink to="/concepts/" onClick={toggleMenu}>
-              CONCEPTS
-            </FixedNavLink>
-            <FixedNavLink to="/about/" onClick={toggleMenu}>
-              ABOUT
-            </FixedNavLink>
-            <FixedNavLink to="/contact/" onClick={toggleMenu}>
-              CONTACT
-            </FixedNavLink>
-          </FixedLinkContainer>
-        )}
+        <Logo />
+        <NavLinks toggle={toggleMenu} isOpen={isOpen} />
       </StyledNav>
     </StyledNavContainer>
   );

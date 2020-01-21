@@ -21,7 +21,7 @@ const BurgerBox = styled.div`
     transform: rotate(45deg) translate(-7px, -7px);
   }
 
-  @media (max-width: ${widths.sm}px) {
+  @media (max-width: ${widths.sm}) {
     display: flex;
   }
 `;

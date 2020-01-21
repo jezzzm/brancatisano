@@ -8,7 +8,7 @@ const TagsContainer = styled.div`
   grid-area: tags;
   padding: 0 1em 1em 0;
   border-bottom: 1px solid ${colors.light};
-  @media (max-width: ${widths.sm}px) {
+  @media (max-width: ${widths.sm}) {
     border: 0;
     padding: 0 1em 1em 0;
   }
@@ -17,7 +17,7 @@ const TagsContainer = styled.div`
 const DateContainer = styled.div`
   grid-area: date;
   padding: 1em 1em 0 0;
-  @media (max-width: ${widths.sm}px) {
+  @media (max-width: ${widths.sm}) {
     border-left: 1px solid ${colors.light};
     padding: 0 0 1em 1em;
   }
@@ -27,7 +27,7 @@ const MapContainer = styled.div`
   grid-area: map;
   border-left: 1px solid ${colors.light};
   padding: 0 1em;
-  @media (max-width: ${widths.sm}px) {
+  @media (max-width: ${widths.sm}) {
     border: 0;
     border-top: 1px solid ${colors.light};
     padding: 1em 0;
@@ -49,7 +49,7 @@ const MetaContainer = styled.aside`
   time {
     font-weight: bolder;
   }
-  @media (max-width: ${widths.sm}px) {
+  @media (max-width: ${widths.sm}) {
     grid-template-areas:
       'tags date'
       'map map'

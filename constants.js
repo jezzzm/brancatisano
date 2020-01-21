@@ -8,8 +8,8 @@ export const colors = {
 };
 
 export const widths = {
-  md: 850,
-  sm: 500,
-  xs: 330,
-  max: 1150,
+  md: '850px',
+  sm: '500px',
+  xs: '330px',
+  max: '1150px',
 };

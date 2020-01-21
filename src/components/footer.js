@@ -6,17 +6,21 @@ import { Link } from 'gatsby';
 const FooterContentContainer = styled.footer`
   width: 100%;
   background: ${colors.primary};
-  color: ${colors.white};
+  color: ${colors.light};
+  a {
+    color: ${colors.white};
+  }
 `;
 
 const FooterContent = styled.div`
-  max-width: ${widths.max}px;
+  max-width: ${widths.max};
   width: 100%;
   margin: 0 auto;
   padding: 4em 1em;
   display: grid;
   grid-template-areas: 'left center right';
-  @media (max-width: ${widths.sm}px) {
+  grid-column-gap: 1rem;
+  @media (max-width: ${widths.sm}) {
     grid-template-areas:
       'left center'
       'left right';
@@ -35,13 +39,16 @@ const LeftFooter = styled.nav`
 const CentralFooter = styled.div`
   grid-area: center;
   text-align: center;
-  @media (max-width: ${widths.sm}px) {
+  @media (max-width: ${widths.sm}) {
     text-align: right;
   }
 `;
 const RightFooter = styled.div`
   grid-area: right;
   text-align: right;
+  @media (max-width: ${widths.sm}) {
+    margin-top: 1rem;
+  }
 `;
 
 const ArchiNum = styled.label`
