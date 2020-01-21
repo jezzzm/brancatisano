@@ -42,7 +42,8 @@ const FixedLinkContainer = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: ${colors.primary};
+  // background: ${colors.primary};
+  background: linear-gradient(135deg, ${colors.primary}, ${colors.tertiary});
   z-index: 500;
   flex-direction: column;
   justify-content: center;

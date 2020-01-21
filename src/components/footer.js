@@ -5,7 +5,8 @@ import { Link } from 'gatsby';
 
 const FooterContentContainer = styled.footer`
   width: 100%;
-  background: ${colors.primary};
+  // background: ${colors.primary};
+  background: linear-gradient(135deg, ${colors.primary}, ${colors.tertiary});
   color: ${colors.light};
   a {
     color: ${colors.white};

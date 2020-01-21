@@ -17,7 +17,8 @@ const StyledNavContainer = styled.div`
   left: 0;
   right: 0;
   max-height: 60px;
-  background: ${colors.primary};
+  // background: ${colors.primary};
+  background: linear-gradient(135deg, ${colors.primary}, ${colors.tertiary});
 `;
 const StyledNav = styled.nav`
   display: flex;

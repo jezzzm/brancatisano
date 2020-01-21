@@ -5,6 +5,7 @@ export const colors = {
   secondary: '#B39096',
   light: '#D8DDE0',
   white: '#FFFFFF',
+  tertiary: '#6c466d',
 };
 
 export const widths = {
