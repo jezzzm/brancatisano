@@ -3,10 +3,9 @@ import { Link } from 'gatsby';
 import styled from '@emotion/styled';
 import { colors, widths } from '../../constants';
 import Logo from './logo';
-import LogoSVG from './brancatisano.svg';
 import Burger from './burger';
 import { ReactSVG } from 'react-svg';
-
+import sba from './brancatisano.svg';
 const StyledNavContainer = styled.div`
   position: sticky;
   top: 0;
@@ -95,9 +94,9 @@ const FixedNavLink = styled(Link)`
 
 const StyledLogo = styled(Link)`
   svg {
-    height: 40px;
-    width: 92px;
-    margin: 0.5em 0 0.3em;
+    height: 35px;
+    width: 80px;
+    margin: 0.8em 0 0.4em;
     path {
       transition: 0.2s all;
     }
@@ -124,7 +123,7 @@ export default () => {
       <StyledNav role="navigation">
         {/* <Logo /> */}
         <StyledLogo to="/">
-          <ReactSVG src="./brancatisano.svg" />
+          <ReactSVG src={sba} />
         </StyledLogo>
         <InlineLinkContainer>
           <InlineNavLink to="/">HOME</InlineNavLink>
