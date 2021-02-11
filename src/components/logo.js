@@ -26,6 +26,6 @@ const StyledLogoLink = styled(Link)`
 
 export default () => (
   <StyledLogoLink to="/">
-    <ReactSVG src="./brancatisano.svg" />
+    <ReactSVG src="/brancatisano.svg" />
   </StyledLogoLink>
 );
