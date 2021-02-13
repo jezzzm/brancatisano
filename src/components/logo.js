@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import { ReactSVG } from 'react-svg';
 
 //styles
 import styled from '@emotion/styled';
 import { colors, widths } from '../../constants';
-import { ReactSVG } from 'react-svg';
 
 const StyledLogoLink = styled(Link)`
   svg {

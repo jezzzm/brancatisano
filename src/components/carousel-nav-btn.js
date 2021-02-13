@@ -9,7 +9,7 @@ const StyledNavBtn = styled.div`
   top: 0;
   position: absolute;
   cursor: pointer;
-  z-index: 500;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
