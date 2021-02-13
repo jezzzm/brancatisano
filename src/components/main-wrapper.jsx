@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { colors, widths } from '../../constants';
 
@@ -20,5 +21,9 @@ const MainWrapper = ({ children }) => (
     <StyledMain>{children}</StyledMain>
   </StyledMainContainer>
 );
+
+MainWrapper.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default MainWrapper;

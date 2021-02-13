@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'gatsby';
 import { ReactSVG } from 'react-svg';
 
-//styles
 import styled from '@emotion/styled';
 import { colors, widths } from '../../constants';
 
@@ -25,8 +24,10 @@ const StyledLogoLink = styled(Link)`
   }
 `;
 
-export default () => (
+const Logo = () => (
   <StyledLogoLink to="/">
     <ReactSVG src="/brancatisano.svg" />
   </StyledLogoLink>
 );
+
+export default Logo;
