@@ -4,7 +4,7 @@ import { Link } from 'gatsby';
 import styled from '@emotion/styled';
 
 import Burger from './burger';
-import { colors, widths } from '../../../constants';
+import { colors, widths } from '../../utils/constants';
 
 const InlineLinkContainer = styled.div`
   display: flex;

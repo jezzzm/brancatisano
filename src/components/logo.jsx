@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import { ReactSVG } from 'react-svg';
 
 import styled from '@emotion/styled';
-import { colors, widths } from '../../constants';
+import { colors, widths } from '../utils/constants';
 
 const StyledLogoLink = styled(Link)`
   svg {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import Map from '../map';
 
-import { colors, widths } from '../../../constants';
+import { colors, widths } from '../../utils/constants';
 
 const TagsContainer = styled.div`
   grid-area: tags;

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
-import { colors } from '../../constants';
+import { colors } from '../utils/constants';
 
 const StyledButton = styled(Link)`
   padding: 1rem 2rem;

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { colors, widths } from '../../../constants';
+import { colors, widths } from '../../utils/constants';
 
 const ArticleTitle = styled.div`
   padding: 2em 0;

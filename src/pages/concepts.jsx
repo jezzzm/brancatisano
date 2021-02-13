@@ -1,71 +1,24 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Img from 'gatsby-image';
-import Helmet from 'react-helmet';
-import styled from '@emotion/styled';
-import { colors } from '../../constants';
 
-import Layout from '../components/layout';
-import ConceptPreview from '../components/concept-preview';
-import MainWrapper from '../components/main-wrapper';
+import Collection from '../components/collection';
+import { collectionPage } from '../utils/prop-types';
 
-const SectionTitle = styled.label`
-  font-size: 1.2em;
-  color: ${colors.secondary};
-  letter-spacing: 1.5px;
-`;
-
-const ArticleList = styled.div`
-  margin: 1em 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-gap: 2rem;
-`;
-
-const Blurb = styled.p`
-  text-align: center;
-  font-size: 1.5em;
-  margin: 3em 0;
-`;
-
-const SectionHero = styled(Img)`
-  height: 61.8vh;
-  max-height: 400px;
-`;
-
-const ConceptIndex = ({ data }) => {
+const Concepts = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title;
   const concepts = data.allContentfulConcept.edges;
-  const hero = data.allContentfulAsset.edges[0].node;
+  const hero = data.allContentfulAsset.edges[0].node.fluid;
   return (
-    <Layout>
-      <Helmet
-        title={siteTitle}
-        meta={[{ name: 'description', content: `Concepts at ${siteTitle}` }]}
-      />
-      <SectionHero
-        alt="Image representing concepts section"
-        fluid={hero.fluid}
-      />
-      <MainWrapper>
-        <Blurb>"Short blurb about concepts, generally."</Blurb>
-        <SectionTitle>CONCEPTS</SectionTitle>
-        <ArticleList>
-          {concepts.map(({ node }) => (
-            <div key={node.slug}>
-              <ConceptPreview concept={node} />
-            </div>
-          ))}
-        </ArticleList>
-      </MainWrapper>
-    </Layout>
+    <Collection type="concept" siteTitle={siteTitle} edges={concepts} fluidHero={hero} />
   );
 };
 
-export default ConceptIndex;
+Concepts.propTypes = collectionPage;
+
+export default Concepts;
 
 export const pageQuery = graphql`
-  query ConceptIndexQuery {
+  query ConceptsQuery {
     site {
       siteMetadata {
         title

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
-import { colors, widths } from '../../../constants';
+import { colors, widths } from '../../utils/constants';
 
 const BurgerContainer = styled.div`
   display: none;

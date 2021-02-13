@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
-import { colors, widths } from '../../constants';
+import { colors, widths } from '../utils/constants';
 
 const FooterContentContainer = styled.footer`
   width: 100%;
