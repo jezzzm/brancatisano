@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 import Logo from '../logo';
 import NavLinks from './nav-links';
-import { colors, widths } from '../../../constants';
+import { colors, widths } from '../../utils/constants';
 
 const StyledNavContainer = styled.div`
   position: sticky;

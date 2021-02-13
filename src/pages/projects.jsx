@@ -1,72 +1,25 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import { graphql } from 'gatsby';
-import Img from 'gatsby-image';
-import Helmet from 'react-helmet';
-import styled from '@emotion/styled';
-import { colors } from '../../constants';
 
-import Layout from '../components/layout';
-import ProjectPreview from '../components/project-preview';
-import MainWrapper from '../components/main-wrapper';
+import Collection from '../components/collection';
+import { collectionPage } from '../utils/prop-types';
 
-const SectionTitle = styled.label`
-  font-size: 1.2em;
-  color: ${colors.secondary};
-  letter-spacing: 1.5px;
-`;
-
-const ArticleList = styled.div`
-  margin: 1em 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-gap: 2rem;
-`;
-
-const Blurb = styled.p`
-  text-align: center;
-  font-size: 1.5em;
-  margin: 3em 0;
-`;
-
-const SectionHero = styled(Img)`
-  height: 61.8vh;
-  max-height: 400px;
-`;
-
-const ProjectIndex = ({ data }) => {
+const Projects = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title;
   const projects = data.allContentfulProject.edges;
-  const hero = data.allContentfulAsset.edges[0].node;
+  const hero = data.allContentfulAsset.edges[0].node.fluid;
   return (
-    <Layout>
-      <Helmet
-        title={siteTitle}
-        meta={[{ name: 'description', content: `Projects at ${siteTitle}` }]}
-      />
-      <SectionHero
-        alt="Image representing projects section"
-        fluid={hero.fluid}
-        fadeIn
-      />
-      <MainWrapper>
-        <Blurb>"Short blurb about projects, generally."</Blurb>
-        <SectionTitle>PROJECTS</SectionTitle>
-        <ArticleList>
-          {projects.map(({ node }) => (
-            <div key={node.slug}>
-              <ProjectPreview project={node} />
-            </div>
-          ))}
-        </ArticleList>
-      </MainWrapper>
-    </Layout>
+    <Collection type="project" siteTitle={siteTitle} edges={projects} fluidHero={hero} />
   );
 };
 
-export default ProjectIndex;
+Projects.propTypes = collectionPage('project');
+
+export default Projects;
 
 export const pageQuery = graphql`
-  query ProjectIndexQuery {
+  query ProjectsQuery {
     site {
       siteMetadata {
         title

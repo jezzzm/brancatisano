@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 
 import CarouselImage, { carouselImageProps } from './image';
 import NavButton from './nav-button';
-import { colors } from '../../../constants';
+import { colors } from '../../utils/constants';
 
 // TODO: load prev and next for speed
 
