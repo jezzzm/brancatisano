@@ -33,8 +33,7 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "prettier": "^2.2.1",
-    "yargs-parser": "^20.2.4"
+    "prettier": "^2.2.1"
   },
   "homepage": "https://github.com/jezzzm/brancatisano#readme",
   "keywords": [
@@ -53,13 +52,9 @@
     "lint": "eslint --ext .js,.jsx --ignore-pattern public .",
     "lint:fix": "eslint --fix --ext .js,.jsx --ignore-pattern public .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js' 'src/**/*.md' 'bin/*.js'",
+    "format": "prettier --write 'src/**/*.js' 'src/**/*.md' 'bin/*.js'",
     "build": "gatsby build",
-    "deploy": "gatsby build --prefix-paths && gh-pages -d public",
-    "fix-semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix *.js bin/*.js",
-    "postinstall": "node ./bin/hello.js",
-    "setup": "node ./bin/setup.js",
-    "start": "npm run develop",
-    "cleanup-repository": "rimraf bin contentful && yarn remove contentful-import chalk inquirer rimraf "
+    "deploy": "gatsby build --prefix-paths",
+    "start": "npm run develop"
   }
 }
