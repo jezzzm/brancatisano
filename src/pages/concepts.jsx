@@ -51,13 +51,11 @@ const ConceptIndex = ({ data }) => {
         <Blurb>"Short blurb about concepts, generally."</Blurb>
         <SectionTitle>CONCEPTS</SectionTitle>
         <ArticleList>
-          {concepts.map(({ node }) => {
-            return (
-              <div key={node.slug}>
-                <ConceptPreview concept={node} />
-              </div>
-            );
-          })}
+          {concepts.map(({ node }) => (
+            <div key={node.slug}>
+              <ConceptPreview concept={node} />
+            </div>
+          ))}
         </ArticleList>
       </MainWrapper>
     </Layout>

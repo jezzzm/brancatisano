@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { colors, widths } from '../../constants';
 import { Link } from 'gatsby';
+import { colors, widths } from '../../constants';
 
 const FooterContentContainer = styled.footer`
   width: 100%;
@@ -75,7 +75,8 @@ const Footer = () => {
         </CentralFooter>
         <RightFooter>
           <p>
-            Website by{' '}
+            Website by
+            {' '}
             <a
               href="https://zej.com.au/"
               title="To the developer's website"

@@ -47,8 +47,8 @@ const ArticleTile = ({ concept }) => (
     <TileTitle>{concept.title}</TileTitle>
     <small>{concept.completion}</small>
     <TileContent>{concept.short}</TileContent>
-    {concept.tags &&
-      concept.tags.map(tag => <TileTag key={tag}>{tag}</TileTag>)}
+    {concept.tags
+      && concept.tags.map((tag) => <TileTag key={tag}>{tag}</TileTag>)}
   </Tile>
 );
 

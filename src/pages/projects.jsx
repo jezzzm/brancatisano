@@ -46,19 +46,17 @@ const ProjectIndex = ({ data }) => {
       <SectionHero
         alt="Image representing projects section"
         fluid={hero.fluid}
-        fadeIn={true}
+        fadeIn
       />
       <MainWrapper>
         <Blurb>"Short blurb about projects, generally."</Blurb>
         <SectionTitle>PROJECTS</SectionTitle>
         <ArticleList>
-          {projects.map(({ node }) => {
-            return (
-              <div key={node.slug}>
-                <ProjectPreview project={node} />
-              </div>
-            );
-          })}
+          {projects.map(({ node }) => (
+            <div key={node.slug}>
+              <ProjectPreview project={node} />
+            </div>
+          ))}
         </ArticleList>
       </MainWrapper>
     </Layout>

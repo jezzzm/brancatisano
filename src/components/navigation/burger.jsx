@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { colors, widths } from '../../constants';
 
-const BurgerBox = styled.div`
+import { colors, widths } from '../../../constants';
+
+const BurgerContainer = styled.div`
   display: none;
   flex-direction: column;
   justify-content: center;
@@ -10,14 +12,12 @@ const BurgerBox = styled.div`
   cursor: pointer;
   z-index: 1000;
   &.open div:first-of-type {
-    -webkit-transform: rotate(-45deg) translate(-7px, 7px);
     transform: rotate(-45deg) translate(-7px, 7px);
   }
   &.open div:nth-of-type(2) {
     opacity: 0;
   }
   &.open div:last-of-type {
-    -webkit-transform: rotate(45deg) translate(-7px, -7px);
     transform: rotate(45deg) translate(-7px, -7px);
   }
 
@@ -26,7 +26,7 @@ const BurgerBox = styled.div`
   }
 `;
 
-const Bar = styled.div`
+const BurgerBar = styled.div`
   width: 30px;
   height: 4px;
   background: ${colors.light};
@@ -34,12 +34,17 @@ const Bar = styled.div`
   transition: 0.3s all;
 `;
 
-const Burger = ({ open, clicked }) => (
-  <BurgerBox onClick={clicked} className={open ? 'open' : 'closed'}>
-    <Bar></Bar>
-    <Bar></Bar>
-    <Bar></Bar>
-  </BurgerBox>
+const Burger = ({ isOpen, onClick }) => (
+  <BurgerContainer onClick={onClick} className={isOpen ? 'open' : 'closed'}>
+    <BurgerBar />
+    <BurgerBar />
+    <BurgerBar />
+  </BurgerContainer>
 );
+
+Burger.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
 
 export default Burger;

@@ -1,9 +1,8 @@
 import React from 'react';
 import Img from 'gatsby-image';
+import styled from '@emotion/styled';
 
 import styles from './hero.module.css';
-
-import styled from '@emotion/styled';
 
 const FullWidthHero = styled.figure`
   width: 100vw;
@@ -14,7 +13,7 @@ const FullWidthHero = styled.figure`
   margin-right: -50vw;
 `;
 
-export default ({ data }) => (
+const Hero = ({ data }) => (
   <div className={styles.hero}>
     <FullWidthHero>
       {data.heroImage && (
@@ -32,3 +31,5 @@ export default ({ data }) => (
     </div>
   </div>
 );
+
+export default Hero;

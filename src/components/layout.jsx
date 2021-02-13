@@ -1,21 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css, Global } from '@emotion/react';
+import styled from '@emotion/styled';
 
-import Container from './container';
+import './base.css';
 import Navigation from './navigation';
 import Footer from './footer';
 
 const globalStyles = css``;
 
+const StyledContainer = styled.div`
+  width: 100%;
+  margin: 0 auto;
+`;
+
 const Layout = ({ children }) => (
   <>
     <Global styles={globalStyles} />
-    <Container>
+    <StyledContainer>
       <Navigation />
       {children}
       <Footer />
-    </Container>
+    </StyledContainer>
   </>
 );
 

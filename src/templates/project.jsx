@@ -1,15 +1,12 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-
-//styles
+import Img from 'gatsby-image';
 import styled from '@emotion/styled';
 
-//components
-import Img from 'gatsby-image';
 import Layout from '../components/layout';
-import ArticleMetaBox from '../components/article-meta-box';
-import ArticleTitle from '../components/article-title-box';
-import ArticleHelmet from '../components/article-helmet';
+import ArticleMetaBox from '../components/article/meta';
+import ArticleTitle from '../components/article/title';
+import ArticleHelmet from '../components/article/helmet';
 import MainWrapper from '../components/main-wrapper';
 import MoreButton from '../components/more-button';
 
@@ -23,53 +20,53 @@ const Content = styled.article`
   margin: 0 auto 4em;
 `;
 
-const ConceptTemplate = props => {
-  const concept = props.data.contentfulConcept;
+const ProjectTemplate = (props) => {
+  const project = props.data.contentfulProject;
   const siteMeta = props.data.site.siteMetadata;
   return (
     <Layout>
       <ArticleHelmet
-        title={concept.title}
+        title={project.title}
         author={siteMeta.author}
-        description={concept.short}
+        description={project.short}
         baseURL={siteMeta.baseURL}
-        articleType={concept.sys.contentType.sys.id}
-        slug={concept.slug}
-        imageSrc={concept.hero.fluid.src}
+        articleType={project.sys.contentType.sys.id}
+        slug={project.slug}
+        imageSrc={project.hero.fluid.src}
         siteTitle={siteMeta.title}
       />
       <HeroImage
-        alt={concept.hero.description}
-        title={concept.hero.description}
-        fluid={concept.hero.fluid}
+        alt={project.hero.description}
+        title={project.hero.description}
+        fluid={project.hero.fluid}
       />
       <MainWrapper>
         <ArticleTitle
-          articleType={concept.sys.contentType.sys.id}
-          title={concept.title}
+          articleType={project.sys.contentType.sys.id}
+          title={project.title}
         />
         <ArticleMetaBox
-          dateType="CREATION"
-          tags={concept.tags}
-          date={concept.created}
-          lat={concept.location.lat}
-          lon={concept.location.lon}
+          dateType="COMPLETION"
+          tags={project.tags}
+          date={project.completion}
+          lat={project.location.lat}
+          lon={project.location.lon}
         />
         <Content
           dangerouslySetInnerHTML={{
-            __html: concept.description.childMarkdownRemark.html,
+            __html: project.description.childMarkdownRemark.html,
           }}
         />
-        <MoreButton link="concepts" text="more concepts" />
+        <MoreButton link="projects" text="More Projects" />
       </MainWrapper>
     </Layout>
   );
 };
 
-export default ConceptTemplate;
+export default ProjectTemplate;
 
 export const pageQuery = graphql`
-  query ConceptBySlug($slug: String!) {
+  query ProjectBySlug($slug: String!) {
     site {
       siteMetadata {
         title
@@ -77,7 +74,7 @@ export const pageQuery = graphql`
         baseURL
       }
     }
-    contentfulConcept(slug: { eq: $slug }) {
+    contentfulProject(slug: { eq: $slug }) {
       title
       slug
       description {
@@ -92,7 +89,7 @@ export const pageQuery = graphql`
         }
         description
       }
-      created(formatString: "MMMM YYYY")
+      completion(formatString: "MMMM YYYY")
       short
       tags
       location {

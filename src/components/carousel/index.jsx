@@ -1,13 +1,12 @@
-import React, { useState, useEffect, useCallback, Fragment } from 'react';
-import { graphql } from 'gatsby';
-
-//styles
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { colors, widths } from '../../constants';
 
-//components
-import CarouselImage from './carousel-image';
-import CarouselNavBtn from './carousel-nav-btn';
+import CarouselImage, { carouselImageProps } from './image';
+import NavButton from './nav-button';
+import { colors } from '../../../constants';
+
+// TODO: load prev and next for speed
 
 const StyledCarousel = styled.section`
   height: 61.8vh;
@@ -39,24 +38,9 @@ const StyledCarousel = styled.section`
   }
 `;
 
-const LeftNav = styled.div`
-  left: 0;
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.4), transparent);
-`;
-const RightNav = styled.div`
-  right: 0;
-  background: linear-gradient(-90deg, rgba(0, 0, 0, 0.4), transparent);
-`;
-
 const Carousel = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    window.addEventListener('keydown', downHandler);
-    return () => {
-      window.removeEventListener('keydown', downHandler);
-    };
-  }, []);
+  const currentImage = images && images[currentIndex].node;
 
   const moveLeft = () => {
     if (!images.length) {
@@ -65,7 +49,7 @@ const Carousel = ({ images }) => {
     if (currentIndex === 0) {
       setCurrentIndex(images.length - 1);
     } else {
-      setCurrentIndex(currentIndex => currentIndex - 1);
+      setCurrentIndex((curr) => curr - 1);
     }
   };
 
@@ -76,35 +60,46 @@ const Carousel = ({ images }) => {
     if (currentIndex === images.length - 1) {
       setCurrentIndex(0);
     } else {
-      setCurrentIndex(currentIndex => currentIndex + 1);
+      setCurrentIndex((curr) => curr + 1);
     }
   };
 
-  const downHandler = e => {
+  const downHandler = (e) => {
     if (e.key === 'ArrowLeft') {
       moveLeft();
-    } else if (e.key == 'ArrowRight') {
+    } else if (e.key === 'ArrowRight') {
       moveRight();
     }
   };
 
-  const currentImage = images && images[currentIndex].node;
-  console.log('current', currentIndex);
+  useEffect(() => {
+    window.addEventListener('keydown', downHandler);
+    return () => {
+      window.removeEventListener('keydown', downHandler);
+    };
+  }, []);
+
   return (
-    <Fragment>
+    <>
       {images && (
         <StyledCarousel>
-          <CarouselNavBtn clicked={moveLeft} direction="left" />
+          <NavButton onClick={moveLeft} direction="left" />
           <CarouselImage
             alt={currentImage.description}
             title={currentImage.title}
             fluid={currentImage.fluid}
           />
-          <CarouselNavBtn clicked={moveRight} direction="right" />
+          <NavButton onClick={moveRight} direction="right" />
         </StyledCarousel>
       )}
-    </Fragment>
+    </>
   );
+};
+
+Carousel.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.shape({
+    node: PropTypes.shape(carouselImageProps),
+  })).isRequired,
 };
 
 export default Carousel;
