@@ -1,6 +1,6 @@
 {
-  "name": "brancatisano-architect",
-  "description": "Architect implementation of Gatsby + Contentful",
+  "name": "brancatisano",
+  "description": "Architect portfolio implementation of Gatsby + Contentful",
   "version": "1.0.0",
   "author": "Jez Milledge <jez.milledge@gmail.com>",
   "bugs": {
@@ -26,8 +26,6 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
-    "chalk": "^4.1.0",
-    "contentful-import": "^7.4.3",
     "dotenv": "^8.0.0",
     "eslint": "^7.20.0",
     "eslint-config-airbnb": "^18.2.1",
@@ -35,9 +33,7 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "inquirer": "^7.3.3",
     "prettier": "^2.2.1",
-    "rimraf": "^3.0.2",
     "yargs-parser": "^20.2.4"
   },
   "homepage": "https://github.com/jezzzm/brancatisano#readme",
@@ -64,7 +60,6 @@
     "postinstall": "node ./bin/hello.js",
     "setup": "node ./bin/setup.js",
     "start": "npm run develop",
-    "heroku-postbuild": "gatsby build",
     "cleanup-repository": "rimraf bin contentful && yarn remove contentful-import chalk inquirer rimraf "
   }
 }
