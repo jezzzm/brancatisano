@@ -11,6 +11,7 @@ const StyledLogoLink = styled(Link)`
     height: 35px;
     width: 80px;
     margin: 0.8em 0 0.4em;
+    color: ${colors.secondary};
     path {
       transition: 0.2s all;
     }

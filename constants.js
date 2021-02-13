@@ -2,7 +2,7 @@ export const colors = {
   copy: '#424242',
   grey: '#636363',
   primary: '#594759',
-  secondary: '#B39096',
+  secondary: '#c5aaaf',
   light: '#D8DDE0',
   white: '#FFFFFF',
   tertiary: '#6c466d',
