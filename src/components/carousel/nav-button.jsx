@@ -1,10 +1,10 @@
 import React from 'react';
-
-//styles
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { colors } from '../../constants';
 
-const StyledNavBtn = styled.div`
+import { colors } from '../../../constants';
+
+const StyledNavButton = styled.div`
   height: 100%;
   top: 0;
   position: absolute;
@@ -39,13 +39,18 @@ const StyledGlyph = styled.span`
   transition: 0.2s all;
 `;
 
-const CarouselNavBtn = ({ direction, clicked }) => {
+const NavButton = ({ direction, onClick }) => {
   const glyph = direction === 'left' ? '<' : '>';
   return (
-    <StyledNavBtn className={direction} tabIndex="0" onClick={clicked}>
+    <StyledNavButton className={direction} tabIndex="0" onClick={onClick}>
       <StyledGlyph>{glyph}</StyledGlyph>
-    </StyledNavBtn>
+    </StyledNavButton>
   );
 };
 
-export default CarouselNavBtn;
+NavButton.propTypes = {
+  direction: PropTypes.oneOf(['left', 'right']).isRequired,
+  onClick: PropTypes.func.isRequired,
+};
+
+export default NavButton;

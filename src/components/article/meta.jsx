@@ -1,8 +1,9 @@
 import React from 'react';
-import LocationMap from './location-map';
-
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { colors, widths } from '../../constants';
+import Map from '../map';
+
+import { colors, widths } from '../../../constants';
 
 const TagsContainer = styled.div`
   grid-area: tags;
@@ -39,7 +40,7 @@ const MetaContainer = styled.aside`
     'tags map map map'
     'date map map map';
   margin: 1em 0;
-  label {
+  span {
     display: block;
     font-size: 0.8em;
     color: ${colors.grey};
@@ -58,21 +59,37 @@ const MetaContainer = styled.aside`
   }
 `;
 
-const MetaBox = ({ lat, lon, date, dateType, tags }) => (
+const Meta = ({
+  lat, lon, date, dateType, tags,
+}) => (
   <MetaContainer>
-    <TagsContainer>
-      <label>TAGS</label>
-      <p>{tags.join(', ')}</p>
-    </TagsContainer>
+    {tags.length ? (
+      <TagsContainer>
+        <span>TAGS</span>
+        <p>{tags.join(', ')}</p>
+      </TagsContainer>
+    ) : null}
     <DateContainer>
-      <label>{dateType}</label>
+      <span>{dateType}</span>
       <time>{date}</time>
     </DateContainer>
     <MapContainer>
-      <label>LOCATION</label>
-      <LocationMap lat={lat} lon={lon} />
+      <span>LOCATION</span>
+      <Map lat={lat} lon={lon} />
     </MapContainer>
   </MetaContainer>
 );
 
-export default MetaBox;
+Meta.propTypes = {
+  lat: PropTypes.number.isRequired,
+  lon: PropTypes.number.isRequired,
+  date: PropTypes.string.isRequired,
+  dateType: PropTypes.string.isRequired,
+  tags: PropTypes.arrayOf(PropTypes.string),
+};
+
+Meta.defaultProps = {
+  tags: [],
+};
+
+export default Meta;

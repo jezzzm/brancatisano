@@ -1,12 +1,10 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
-
-//styles
-import { colors, widths } from '../../constants';
 import styled from '@emotion/styled';
 
-//components
 import Burger from './burger';
+import { colors, widths } from '../../../constants';
 
 const InlineLinkContainer = styled.div`
   display: flex;
@@ -42,7 +40,7 @@ const FixedLinkContainer = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  // background: ${colors.primary};
+
   background: linear-gradient(135deg, ${colors.primary}, ${colors.tertiary});
   z-index: 500;
   flex-direction: column;
@@ -73,8 +71,8 @@ const FixedNavLink = styled(Link)`
   }
 `;
 
-const NavLinks = ({ toggle, isOpen }) => (
-  <Fragment>
+const NavLinks = ({ onToggleFullscreen, isOpenFullscreen }) => (
+  <>
     <InlineLinkContainer>
       <InlineNavLink to="/">HOME</InlineNavLink>
       <InlineNavLink to="/projects/">PROJECTS</InlineNavLink>
@@ -82,27 +80,32 @@ const NavLinks = ({ toggle, isOpen }) => (
       <InlineNavLink to="/about/">ABOUT</InlineNavLink>
       <InlineNavLink to="/contact/">CONTACT</InlineNavLink>
     </InlineLinkContainer>
-    <Burger open={isOpen} clicked={toggle} />
-    {isOpen && (
-      <FixedLinkContainer onClick={toggle}>
-        <FixedNavLink to="/" onClick={toggle}>
+    <Burger isOpen={isOpenFullscreen} onClick={onToggleFullscreen} />
+    {isOpenFullscreen && (
+      <FixedLinkContainer onClick={onToggleFullscreen}>
+        <FixedNavLink to="/" onClick={onToggleFullscreen}>
           HOME
         </FixedNavLink>
-        <FixedNavLink to="/projects/" onClick={toggle}>
+        <FixedNavLink to="/projects/" onClick={onToggleFullscreen}>
           PROJECTS
         </FixedNavLink>
-        <FixedNavLink to="/concepts/" onClick={toggle}>
+        <FixedNavLink to="/concepts/" onClick={onToggleFullscreen}>
           CONCEPTS
         </FixedNavLink>
-        <FixedNavLink to="/about/" onClick={toggle}>
+        <FixedNavLink to="/about/" onClick={onToggleFullscreen}>
           ABOUT
         </FixedNavLink>
-        <FixedNavLink to="/contact/" onClick={toggle}>
+        <FixedNavLink to="/contact/" onClick={onToggleFullscreen}>
           CONTACT
         </FixedNavLink>
       </FixedLinkContainer>
     )}
-  </Fragment>
+  </>
 );
+
+NavLinks.propTypes = {
+  isOpenFullscreen: PropTypes.bool.isRequired,
+  onToggleFullscreen: PropTypes.func.isRequired,
+};
 
 export default NavLinks;

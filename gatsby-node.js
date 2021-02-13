@@ -1,21 +1,12 @@
-const Promise = require('bluebird');
 const path = require('path');
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
   return new Promise((resolve, reject) => {
-    // const blogPost = path.resolve('./src/templates/blog-post.js');
-    const projectPost = path.resolve('./src/templates/project.js');
-    const conceptPost = path.resolve('./src/templates/concept.js');
-    // allContentfulBlogPost {
-    //   edges {
-    //     node {
-    //       title
-    //       slug
-    //     }
-    //   }
-    // }
+    const projectPost = path.resolve('./src/templates/project.jsx');
+    const conceptPost = path.resolve('./src/templates/concept.jsx');
+
     resolve(
       graphql(
         `
@@ -37,26 +28,14 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           }
-        `
-      ).then(result => {
+        `,
+      ).then((result) => {
         if (result.errors) {
-          console.log(result.errors);
           reject(result.errors);
         }
 
-        // const posts = result.data.allContentfulBlogPost.edges;
-        // posts.forEach((post, index) => {
-        //   createPage({
-        //     path: `/blog/${post.node.slug}/`,
-        //     component: blogPost,
-        //     context: {
-        //       slug: post.node.slug,
-        //     },
-        //   });
-        // });
-
         const projects = result.data.allContentfulProject.edges;
-        projects.forEach((project, index) => {
+        projects.forEach((project) => {
           createPage({
             path: `/project/${project.node.slug}/`,
             component: projectPost,
@@ -67,7 +46,7 @@ exports.createPages = ({ graphql, actions }) => {
         });
 
         const concepts = result.data.allContentfulConcept.edges;
-        concepts.forEach((concept, index) => {
+        concepts.forEach((concept) => {
           createPage({
             path: `/concept/${concept.node.slug}/`,
             component: conceptPost,
@@ -76,7 +55,7 @@ exports.createPages = ({ graphql, actions }) => {
             },
           });
         });
-      })
+      }),
     );
   });
 };

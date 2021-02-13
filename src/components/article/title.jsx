@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { colors, widths } from '../../constants';
+import { colors, widths } from '../../../constants';
 
 const ArticleTitle = styled.div`
   padding: 2em 0;
-  label {
+  span {
     font-size: 1.2em;
     color: ${colors.secondary};
     letter-spacing: 1.5px;
@@ -19,9 +20,16 @@ const ArticleTitle = styled.div`
   }
 `;
 
-export default ({ articleType, title }) => (
+const Title = ({ articleType, title }) => (
   <ArticleTitle>
-    <label>{articleType.toUpperCase()}</label>
+    <span>{articleType.toUpperCase()}</span>
     <h1>{title}</h1>
   </ArticleTitle>
 );
+
+Title.propTypes = {
+  articleType: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+};
+
+export default Title;

@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'gatsby';
-
-//styles
 import styled from '@emotion/styled';
-import { colors, widths } from '../../constants';
 
-//components
-import Logo from './logo';
+import Logo from '../logo';
 import NavLinks from './nav-links';
+import { colors, widths } from '../../../constants';
 
 const StyledNavContainer = styled.div`
   position: sticky;
@@ -17,9 +13,9 @@ const StyledNavContainer = styled.div`
   left: 0;
   right: 0;
   max-height: 60px;
-  // background: ${colors.primary};
   background: linear-gradient(135deg, ${colors.primary}, ${colors.tertiary});
 `;
+
 const StyledNav = styled.nav`
   display: flex;
   height: 100%;
@@ -31,24 +27,30 @@ const StyledNav = styled.nav`
   }
 `;
 
-export default () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleMenu = () => setIsOpen(!isOpen);
+const Navigation = () => {
+  const [isOpenFullscreen, setIsOpenFullscreen] = useState(false);
 
   useEffect(() => {
-    if (isOpen && document) {
-      document.body.style.overflow = 'hidden';
-    } else if (!isOpen && document) {
-      document.body.style.overflow = 'unset';
+    if (document) {
+      if (isOpenFullscreen) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = 'unset';
+      }
     }
-  }, [isOpen]);
+  }, [isOpenFullscreen]);
 
   return (
     <StyledNavContainer>
       <StyledNav role="navigation">
         <Logo />
-        <NavLinks toggle={toggleMenu} isOpen={isOpen} />
+        <NavLinks
+          onToggleFullscreen={() => setIsOpenFullscreen(!isOpenFullscreen)}
+          isOpenFullscreen={isOpenFullscreen}
+        />
       </StyledNav>
     </StyledNavContainer>
   );
 };
+
+export default Navigation;
