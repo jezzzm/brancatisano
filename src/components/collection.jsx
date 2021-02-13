@@ -11,26 +11,27 @@ import MainWrapper from './main-wrapper';
 import { colors } from '../utils/constants';
 import { upperFirst } from '../utils/strings';
 
-const SectionTitle = styled.label`
+const CollectionTitle = styled.h4`
   font-size: 1.2em;
+  font-weight: lighter;
   color: ${colors.secondary};
   letter-spacing: 1.5px;
 `;
 
-const ArticleList = styled.div`
+const PreviewList = styled.div`
   margin: 1em 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 2rem;
 `;
 
-const Blurb = styled.p`
+const CollectionBlurb = styled.p`
   text-align: center;
   font-size: 1.5em;
   margin: 3em 0;
 `;
 
-const SectionHero = styled(Img)`
+const CollectionHero = styled(Img)`
   height: 61.8vh;
   max-height: 400px;
 `;
@@ -45,19 +46,19 @@ const Collection = ({
         title={siteTitle}
         meta={[{ name: 'description', content: `${upperFirst(plural)} at ${siteTitle}` }]}
       />
-      <SectionHero
+      <CollectionHero
         alt={`Image representing SBA ${plural} collection`}
         fluid={fluidHero}
         fadeIn
       />
       <MainWrapper>
-        <Blurb>{`"Short blurb about ${plural}, generally."`}</Blurb>
-        <SectionTitle>{plural.toUpperCase()}</SectionTitle>
-        <ArticleList>
+        <CollectionBlurb>{`"Short blurb about ${plural}, generally."`}</CollectionBlurb>
+        <CollectionTitle>{plural.toUpperCase()}</CollectionTitle>
+        <PreviewList>
           {edges.map(({ node }) => (
             <PreviewTile key={`collection-preview-${node.slug}`} type={type} content={node} />
           ))}
-        </ArticleList>
+        </PreviewList>
       </MainWrapper>
     </Layout>
   );
