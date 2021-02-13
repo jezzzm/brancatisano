@@ -14,7 +14,7 @@ const Projects = ({ data }) => {
   );
 };
 
-Projects.propTypes = collectionPage;
+Projects.propTypes = collectionPage('project');
 
 export default Projects;
 

@@ -13,7 +13,7 @@ const Concepts = ({ data }) => {
   );
 };
 
-Concepts.propTypes = collectionPage;
+Concepts.propTypes = collectionPage('concept');
 
 export default Concepts;
 

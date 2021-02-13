@@ -9,6 +9,7 @@ import Layout from './layout';
 import PreviewTile from './preview-tile';
 import MainWrapper from './main-wrapper';
 import { colors } from '../utils/constants';
+import { upperFirst } from '../utils/strings';
 
 const SectionTitle = styled.label`
   font-size: 1.2em;
@@ -36,30 +37,31 @@ const SectionHero = styled(Img)`
 
 const Collection = ({
   type, siteTitle, edges, fluidHero,
-}) => (
-  <Layout>
-    <Helmet
-      title={siteTitle}
-      meta={[{ name: 'description', content: `Projects at ${siteTitle}` }]}
-    />
-    <SectionHero
-      alt="Image representing projects section"
-      fluid={fluidHero}
-      fadeIn
-    />
-    <MainWrapper>
-      <Blurb>&quot;Short blurb about projects, generally.&quot;</Blurb>
-      <SectionTitle>PROJECTS</SectionTitle>
-      <ArticleList>
-        {edges.map(({ node }) => (
-          <div key={node.slug}>
-            <PreviewTile type={type} content={node} />
-          </div>
-        ))}
-      </ArticleList>
-    </MainWrapper>
-  </Layout>
-);
+}) => {
+  const plural = `${type}s`;
+  return (
+    <Layout>
+      <Helmet
+        title={siteTitle}
+        meta={[{ name: 'description', content: `${upperFirst(plural)} at ${siteTitle}` }]}
+      />
+      <SectionHero
+        alt={`Image representing SBA ${plural} collection`}
+        fluid={fluidHero}
+        fadeIn
+      />
+      <MainWrapper>
+        <Blurb>{`"Short blurb about ${plural}, generally."`}</Blurb>
+        <SectionTitle>{plural.toUpperCase()}</SectionTitle>
+        <ArticleList>
+          {edges.map(({ node }) => (
+            <PreviewTile key={`collection-preview-${node.slug}`} type={type} content={node} />
+          ))}
+        </ArticleList>
+      </MainWrapper>
+    </Layout>
+  );
+};
 
 Collection.propTypes = {
   type: PropTypes.oneOf(['project', 'concept']).isRequired,
