@@ -1,11 +1,12 @@
 export const colors = {
   copy: '#424242',
   grey: '#636363',
-  primary: '#594759',
-  secondary: '#c5aaaf',
-  light: '#D8DDE0',
+  primary: '#f4e3e7',
+  secondary: '#5A4448',
+  tertiary: '#7BA882',
+  light: '#E4F5E6',
   white: '#FFFFFF',
-  tertiary: '#6c466d',
+  midpoint: '#A79498',
 };
 
 export const widths = {
@@ -13,4 +14,5 @@ export const widths = {
   sm: '500px',
   xs: '330px',
   max: '1150px',
+  reading: '670px',
 };

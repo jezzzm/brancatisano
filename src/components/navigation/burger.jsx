@@ -4,13 +4,17 @@ import styled from '@emotion/styled';
 
 import { colors, widths } from '../../utils/constants';
 
-const BurgerContainer = styled.div`
+const BurgerButton = styled.button`
   display: none;
   flex-direction: column;
   justify-content: center;
   transition: 0.3s all;
   cursor: pointer;
   z-index: 1000;
+  background: none;
+  border: none;
+  padding: 0.5em;
+
   &.open div:first-of-type {
     transform: rotate(-45deg) translate(-7px, 7px);
   }
@@ -30,16 +34,23 @@ const BurgerBar = styled.div`
   width: 30px;
   height: 4px;
   background: ${colors.light};
-  margin: 3px 0;
   transition: 0.3s all;
+
+  &:nth-of-type(2) {
+    margin: 6px 0;
+  }
 `;
 
 const Burger = ({ isOpen, onClick }) => (
-  <BurgerContainer onClick={onClick} className={isOpen ? 'open' : 'closed'}>
+  <BurgerButton
+    type="button"
+    onClick={onClick}
+    className={isOpen ? 'open' : 'closed'}
+  >
     <BurgerBar />
     <BurgerBar />
     <BurgerBar />
-  </BurgerContainer>
+  </BurgerButton>
 );
 
 Burger.propTypes = {

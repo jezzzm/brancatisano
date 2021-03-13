@@ -13,7 +13,7 @@ const ArticleTitle = styled.div`
   h1 {
     font-size: 4em;
     line-height: 1.2;
-    color: ${colors.primary};
+    color: ${colors.copy};
     @media (max-width: ${widths.sm}) {
       font-size: 3em;
     }

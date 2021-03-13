@@ -19,14 +19,10 @@ const InlineNavLink = styled(Link)`
   text-align: right;
   margin-left: 1em;
   color: ${colors.white};
+  text-underline-offset: 0.4em;
   &:hover {
-    text-decoration: none;
-  }
-  transition: 0.15s all;
-  @media (hover: hover) {
-    &:hover {
-      color: ${colors.secondary};
-    }
+    color: ${colors.light};
+    text-decoration: underline solid currentColor 3px;
   }
   @media (max-width: ${widths.sm}) {
     display: none;
@@ -41,7 +37,12 @@ const FixedLinkContainer = styled.div`
   width: 100%;
   height: 100%;
 
-  background: linear-gradient(135deg, ${colors.primary}, ${colors.tertiary});
+  background: conic-gradient(
+    from 35deg at bottom right,
+    ${colors.tertiary},
+    ${colors.primary},
+    ${colors.tertiary}
+  );
   z-index: 500;
   flex-direction: column;
   justify-content: center;

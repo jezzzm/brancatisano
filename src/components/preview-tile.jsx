@@ -8,7 +8,7 @@ import { colors } from '../utils/constants';
 
 const TileTitle = styled.h3`
   font-size: 1.5em;
-  color: ${colors.primary};
+  color: ${colors.copy};
   margin: 0.7rem 0 0;
 `;
 
@@ -54,8 +54,8 @@ const PreviewTile = ({ type, content }) => (
     <TileTitle>{content.title}</TileTitle>
     <small>{content.completion}</small>
     <TileContent>{content.short}</TileContent>
-    {content.tags?.length
-        && content.tags.map((tag) => <TileTag key={tag}>{tag}</TileTag>)}
+    {content.tags?.length &&
+      content.tags.map((tag) => <TileTag key={tag}>{tag}</TileTag>)}
   </Tile>
 );
 

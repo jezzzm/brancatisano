@@ -6,9 +6,9 @@ import styled from '@emotion/styled';
 import Layout from '../components/layout';
 import ArticleMetaBox from '../components/article/meta';
 import ArticleTitle from '../components/article/title';
-import ArticleHelmet from '../components/article/helmet';
+import Helmet from '../components/helmet';
 import MainWrapper from '../components/main-wrapper';
-import MoreButton from '../components/more-button';
+import LinkButton from '../components/link-button';
 
 const HeroImage = styled(Img)`
   height: 61.8vh;
@@ -20,12 +20,12 @@ const Content = styled.article`
   margin: 0 auto 4em;
 `;
 
-const ProjectTemplate = (props) => {
-  const project = props.data.contentfulProject;
-  const siteMeta = props.data.site.siteMetadata;
+const ProjectTemplate = ({ data }) => {
+  const { contentfulProject: project } = data;
+  const { siteMetadata: siteMeta } = data.site;
   return (
     <Layout>
-      <ArticleHelmet
+      <Helmet
         title={project.title}
         author={siteMeta.author}
         description={project.short}
@@ -57,7 +57,7 @@ const ProjectTemplate = (props) => {
             __html: project.description.childMarkdownRemark.html,
           }}
         />
-        <MoreButton link="projects" text="More Projects" />
+        <LinkButton to="/projects" text="More Projects" />
       </MainWrapper>
     </Layout>
   );

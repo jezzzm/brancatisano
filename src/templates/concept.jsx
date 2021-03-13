@@ -6,9 +6,9 @@ import styled from '@emotion/styled';
 import Layout from '../components/layout';
 import ArticleMetaBox from '../components/article/meta';
 import ArticleTitle from '../components/article/title';
-import ArticleHelmet from '../components/article/helmet';
+import Helmet from '../components/helmet';
 import MainWrapper from '../components/main-wrapper';
-import MoreButton from '../components/more-button';
+import LinkButton from '../components/link-button';
 
 const HeroImage = styled(Img)`
   height: 61.8vh;
@@ -20,12 +20,12 @@ const Content = styled.article`
   margin: 0 auto 4em;
 `;
 
-const ConceptTemplate = (props) => {
-  const concept = props.data.contentfulConcept;
-  const siteMeta = props.data.site.siteMetadata;
+const ConceptTemplate = ({ data }) => {
+  const concept = data.contentfulConcept;
+  const siteMeta = data.site.siteMetadata;
   return (
     <Layout>
-      <ArticleHelmet
+      <Helmet
         title={concept.title}
         author={siteMeta.author}
         description={concept.short}
@@ -57,7 +57,7 @@ const ConceptTemplate = (props) => {
             __html: concept.description.childMarkdownRemark.html,
           }}
         />
-        <MoreButton link="concepts" text="more concepts" />
+        <LinkButton to="/concepts" text="more concepts" />
       </MainWrapper>
     </Layout>
   );

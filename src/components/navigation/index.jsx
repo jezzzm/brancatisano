@@ -9,21 +9,26 @@ const StyledNavContainer = styled.div`
   position: sticky;
   top: 0;
   z-index: 100;
-  width: 100vw;
   left: 0;
   right: 0;
-  max-height: 60px;
-  background: linear-gradient(135deg, ${colors.primary}, ${colors.tertiary});
+  padding: 0.3em 0;
+  background: linear-gradient(
+    135deg,
+    ${colors.primary},
+    ${colors.midpoint},
+    ${colors.secondary}
+  );
 `;
 
 const StyledNav = styled.nav`
   display: flex;
   height: 100%;
+  align-items: center;
   justify-content: space-between;
   margin: 0 auto;
   max-width: ${widths.max};
   @media (max-width: ${widths.max}) {
-    padding: 0 0.7em;
+    padding: 0 0.9em;
   }
 `;
 
@@ -43,7 +48,11 @@ const Navigation = () => {
   return (
     <StyledNavContainer>
       <StyledNav role="navigation">
-        <Logo />
+        <Logo
+          linksTo="/"
+          mobile={{ height: '28px', width: '70px' }}
+          standard={{ height: '35px', width: '80px' }}
+        />
         <NavLinks
           onToggleFullscreen={() => setIsOpenFullscreen(!isOpenFullscreen)}
           isOpenFullscreen={isOpenFullscreen}

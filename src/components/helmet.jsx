@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
-const ArticleHelmet = ({
+const BaseHelmet = ({
   title,
   author,
   description,
@@ -51,7 +51,7 @@ const ArticleHelmet = ({
   />
 );
 
-ArticleHelmet.propTypes = {
+BaseHelmet.propTypes = {
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
@@ -62,4 +62,4 @@ ArticleHelmet.propTypes = {
   siteTitle: PropTypes.string.isRequired,
 };
 
-export default ArticleHelmet;
+export default BaseHelmet;
