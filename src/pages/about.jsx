@@ -72,7 +72,7 @@ const About = ({ data }) => {
               <p>Interested in working with us?</p>
               <LinkButton
                 to="/contact"
-                text="Get in touch &rarr;"
+                text="Get in touch"
                 appearance="success"
               />
             </div>

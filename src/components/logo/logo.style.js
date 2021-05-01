@@ -3,6 +3,7 @@ import { colors, widths } from '../../utils/constants';
 
 export const shared = (mobile, standard) => css`
   svg {
+    max-width: 100%;
     height: ${standard.height};
     width: ${standard.width};
     color: ${colors.secondary};
@@ -22,7 +23,7 @@ export const linkOnly = css`
       transition: 0.2s all;
     }
     &:hover path {
-      fill: ${colors.tertiary} !important;
+      fill: ${colors.success} !important;
     }
   }
 `;

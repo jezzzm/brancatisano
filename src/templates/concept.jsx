@@ -57,7 +57,7 @@ const ConceptTemplate = ({ data }) => {
             __html: concept.description.childMarkdownRemark.html,
           }}
         />
-        <LinkButton to="/concepts" text="more concepts" />
+        <LinkButton to="/concepts" text="more concepts" appearance="primary" />
       </MainWrapper>
     </Layout>
   );

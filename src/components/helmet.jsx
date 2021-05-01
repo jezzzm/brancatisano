@@ -13,7 +13,7 @@ const BaseHelmet = ({
   siteTitle,
 }) => (
   <Helmet
-    title={`${title} | ${author}`}
+    title={`${title}${author ? ` | ${author}` : undefined}`}
     meta={[
       {
         name: 'description',
@@ -53,13 +53,18 @@ const BaseHelmet = ({
 
 BaseHelmet.propTypes = {
   title: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
+  author: PropTypes.string,
   description: PropTypes.string.isRequired,
   baseURL: PropTypes.string.isRequired,
   articleType: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
   imageSrc: PropTypes.string.isRequired,
-  siteTitle: PropTypes.string.isRequired,
+  siteTitle: PropTypes.string,
+};
+
+BaseHelmet.defaultProps = {
+  author: undefined,
+  siteTitle: 'Stephanie Brancatisano Architect',
 };
 
 export default BaseHelmet;

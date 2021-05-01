@@ -9,7 +9,12 @@ const Concepts = ({ data }) => {
   const concepts = data.allContentfulConcept.edges;
   const hero = data.allContentfulAsset.edges[0].node.fluid;
   return (
-    <Collection type="concept" siteTitle={siteTitle} edges={concepts} fluidHero={hero} />
+    <Collection
+      type="concept"
+      siteTitle={siteTitle}
+      edges={concepts}
+      fluidHero={hero}
+    />
   );
 };
 

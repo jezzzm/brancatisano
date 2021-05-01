@@ -27,7 +27,10 @@ export const ctaWrapper = css`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  font-size: 1.5em;
+
+  p {
+    font-size: 1.5em;
+  }
 `;
 
 export const cta = css`
@@ -43,7 +46,7 @@ export const cta = css`
 
   &:hover {
     text-decoration: none;
-    box-shadow: 0 0 1em rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 1em ${colors.shadow});
     opacity: 0.9;
     transform: scale(1.04);
   }

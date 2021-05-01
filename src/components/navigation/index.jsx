@@ -12,6 +12,7 @@ const StyledNavContainer = styled.div`
   left: 0;
   right: 0;
   padding: 0.3em 0;
+  box-shadow: 0 0 1em ${colors.shadow};
   background: linear-gradient(
     135deg,
     ${colors.primary},
