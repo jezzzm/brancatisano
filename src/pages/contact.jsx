@@ -2,32 +2,26 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import Layout from '../components/layout';
-import ArticleTitle from '../components/article/title';
+import PageHeading from '../components/page-heading';
 import MainWrapper from '../components/main-wrapper';
-import Helmet from '../components/helmet';
-import Logo from '../components/logo';
 
-import * as styles from './about.style';
+import * as styles from '../style/about.style';
 
 const Contact = ({ data }) => {
-  const {
-    site: { siteMetadata },
-  } = data;
+  const meta = {
+    title: 'Contact Us',
+    description: 'Get in touch with SBA',
+  };
 
   return (
-    <Layout>
-      {/* <Helmet
-        title="Contact Stephanie Brancatisano Architects"
-        author={siteMetadata.author}
-        baseURL={siteMetadata.baseURL}
-      /> */}
+    <Layout meta={meta}>
       <MainWrapper>
-        <ArticleTitle articleType="CONTACT" title="Get in touch with us" />
+        <PageHeading articleType="CONTACT" title="Get in touch with us" />
         <div css={styles.content}>
           <article css={styles.article}>
-            <p>Phone: 0400 000 000</p>
+            <p>Phone: {data.site.siteMetadata.phone}</p>
 
-            <p>Email: info@brancatisano.com</p>
+            <p>Email: {data.site.siteMetadata.email}</p>
           </article>
         </div>
       </MainWrapper>
@@ -41,8 +35,8 @@ export const pageQuery = graphql`
   query ContactPage {
     site {
       siteMetadata {
-        author
-        baseURL
+        phone
+        email
       }
     }
   }

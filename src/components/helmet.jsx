@@ -7,10 +7,10 @@ const BaseHelmet = ({
   author,
   description,
   baseURL,
-  articleType,
-  slug,
   imageSrc,
   siteTitle,
+  path,
+  isArticle,
 }) => (
   <Helmet
     title={`${title}${author ? ` | ${author}` : undefined}`}
@@ -29,15 +29,15 @@ const BaseHelmet = ({
       },
       {
         property: 'og:type',
-        content: 'article',
+        content: isArticle ? 'article' : 'website',
       },
       {
         property: 'og:url',
-        content: `${baseURL}/${articleType.toLowerCase()}/${slug}/`,
+        content: `${baseURL}${path}`,
       },
       {
         property: 'og:image',
-        content: `https:${imageSrc}`,
+        content: imageSrc,
       },
       {
         property: 'og:description',
@@ -56,15 +56,15 @@ BaseHelmet.propTypes = {
   author: PropTypes.string,
   description: PropTypes.string.isRequired,
   baseURL: PropTypes.string.isRequired,
-  articleType: PropTypes.string.isRequired,
-  slug: PropTypes.string.isRequired,
   imageSrc: PropTypes.string.isRequired,
-  siteTitle: PropTypes.string,
+  siteTitle: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
+  isArticle: PropTypes.bool,
 };
 
 BaseHelmet.defaultProps = {
   author: undefined,
-  siteTitle: 'Stephanie Brancatisano Architect',
+  isArticle: false,
 };
 
 export default BaseHelmet;

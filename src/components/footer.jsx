@@ -19,10 +19,12 @@ const FooterContent = styled.div`
   display: grid;
   grid-template-areas: 'left center right';
   grid-column-gap: 1rem;
+  grid-template-columns: 1fr 1fr 1fr;
   @media (max-width: ${widths.sm}) {
     grid-template-areas:
       'left center'
       'left right';
+    grid-template-columns: 1fr 1fr;
   }
 `;
 

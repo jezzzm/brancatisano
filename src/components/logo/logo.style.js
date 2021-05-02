@@ -23,7 +23,7 @@ export const linkOnly = css`
       transition: 0.2s all;
     }
     &:hover path {
-      fill: ${colors.success} !important;
+      fill: ${colors.white} !important;
     }
   }
 `;

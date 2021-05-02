@@ -5,8 +5,7 @@ import styled from '@emotion/styled';
 
 import Layout from '../components/layout';
 import ArticleMetaBox from '../components/article/meta';
-import ArticleTitle from '../components/article/title';
-import Helmet from '../components/helmet';
+import PageHeading from '../components/page-heading';
 import MainWrapper from '../components/main-wrapper';
 import LinkButton from '../components/link-button';
 
@@ -22,26 +21,22 @@ const Content = styled.article`
 
 const ProjectTemplate = ({ data }) => {
   const { contentfulProject: project } = data;
-  const { siteMetadata: siteMeta } = data.site;
+
+  const meta = {
+    title: project.title,
+    description: project.short,
+    imageSrc: project.hero.fluid.src,
+  };
+
   return (
-    <Layout>
-      <Helmet
-        title={project.title}
-        author={siteMeta.author}
-        description={project.short}
-        baseURL={siteMeta.baseURL}
-        articleType={project.sys.contentType.sys.id}
-        slug={project.slug}
-        imageSrc={project.hero.fluid.src}
-        siteTitle={siteMeta.title}
-      />
+    <Layout meta={meta}>
       <HeroImage
         alt={project.hero.description}
         title={project.hero.description}
         fluid={project.hero.fluid}
       />
       <MainWrapper>
-        <ArticleTitle
+        <PageHeading
           articleType={project.sys.contentType.sys.id}
           title={project.title}
         />
@@ -67,13 +62,6 @@ export default ProjectTemplate;
 
 export const pageQuery = graphql`
   query ProjectBySlug($slug: String!) {
-    site {
-      siteMetadata {
-        title
-        author
-        baseURL
-      }
-    }
     contentfulProject(slug: { eq: $slug }) {
       title
       slug

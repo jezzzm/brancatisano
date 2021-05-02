@@ -20,13 +20,13 @@ const TileContent = styled.p`
 const Tile = styled(Link)`
   display: block;
   height: 100%;
-  transition: 0.15s all;
+  border: 1px solid ${colors.light};
+  border-radius: 1rem;
+  padding: 2rem;
+
   &:hover {
     text-decoration: none;
     border: 1px solid ${colors.secondary};
-  }
-  border: 1px solid ${colors.light};
-  padding: 2rem;
   }
 `;
 

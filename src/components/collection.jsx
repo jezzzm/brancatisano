@@ -2,7 +2,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Img from 'gatsby-image';
-import Helmet from 'react-helmet';
 import styled from '@emotion/styled';
 
 import Layout from './layout';
@@ -36,16 +35,17 @@ const CollectionHero = styled(Img)`
   max-height: 400px;
 `;
 
-const Collection = ({
-  type, siteTitle, edges, fluidHero,
-}) => {
+const Collection = ({ type, edges, fluidHero }) => {
   const plural = `${type}s`;
+
+  const meta = {
+    title: upperFirst(plural),
+    description: `All ${plural} by SBA.`,
+    image: fluidHero.src,
+  };
+
   return (
-    <Layout>
-      <Helmet
-        title={siteTitle}
-        meta={[{ name: 'description', content: `${upperFirst(plural)} at ${siteTitle}` }]}
-      />
+    <Layout meta={meta}>
       <CollectionHero
         alt={`Image representing SBA ${plural} collection`}
         fluid={fluidHero}
@@ -56,7 +56,11 @@ const Collection = ({
         <CollectionTitle>{plural.toUpperCase()}</CollectionTitle>
         <PreviewList>
           {edges.map(({ node }) => (
-            <PreviewTile key={`collection-preview-${node.slug}`} type={type} content={node} />
+            <PreviewTile
+              key={`collection-preview-${node.slug}`}
+              type={type}
+              content={node}
+            />
           ))}
         </PreviewList>
       </MainWrapper>
@@ -66,7 +70,6 @@ const Collection = ({
 
 Collection.propTypes = {
   type: PropTypes.oneOf(['project', 'concept']).isRequired,
-  siteTitle: PropTypes.string.isRequired,
   edges: PropTypes.arrayOf(PropTypes.object).isRequired,
   fluidHero: PropTypes.object.isRequired, // gatsby fluid type
 };

@@ -1,29 +1,23 @@
 import React from 'react';
-import { graphql } from 'gatsby';
 
 import Layout from '../components/layout';
-import ArticleTitle from '../components/article/title';
+import PageHeading from '../components/page-heading';
 import MainWrapper from '../components/main-wrapper';
-import Helmet from '../components/helmet';
 import Logo from '../components/logo';
 import LinkButton from '../components/link-button';
 
-import * as styles from './about.style';
+import * as styles from '../style/about.style';
 
-const About = ({ data }) => {
-  const {
-    site: { siteMetadata },
-  } = data;
+const About = () => {
+  const meta = {
+    title: 'About Us',
+    description: 'Information about SBA',
+  };
 
   return (
-    <Layout>
-      {/* <Helmet
-        title="About Stephanie Brancatisano Architects"
-        author={siteMetadata.author}
-        baseURL={siteMetadata.baseURL}
-      /> */}
+    <Layout meta={meta}>
       <MainWrapper>
-        <ArticleTitle
+        <PageHeading
           articleType="ABOUT"
           title="Stephanie Brancatisano Architects"
         />
@@ -84,14 +78,3 @@ const About = ({ data }) => {
 };
 
 export default About;
-
-export const pageQuery = graphql`
-  query AboutPage {
-    site {
-      siteMetadata {
-        author
-        baseURL
-      }
-    }
-  }
-`;

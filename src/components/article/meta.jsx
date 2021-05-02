@@ -41,7 +41,7 @@ const MetaContainer = styled.aside`
     'tags map map map'
     'date map map map';
   margin: 1em 0 2em;
-  span {
+  h4 {
     display: block;
     font-size: 0.8em;
     color: ${colors.midpoint};
@@ -64,18 +64,18 @@ const Meta = ({ lat, lon, date, dateType, tags }) => (
   <MetaContainer>
     {tags.length ? (
       <TagsContainer>
-        <span>TAGS</span>
+        <h4>TAGS</h4>
         {tags.map((tag) => (
           <Tag text={tag} key={tag} />
         ))}
       </TagsContainer>
     ) : null}
     <DateContainer>
-      <span>{dateType}</span>
+      <h4>{dateType}</h4>
       <time>{date}</time>
     </DateContainer>
     <MapContainer>
-      <span>LOCATION</span>
+      <h4>LOCATION</h4>
       <Map lat={lat} lon={lon} />
     </MapContainer>
   </MetaContainer>

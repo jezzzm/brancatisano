@@ -5,17 +5,9 @@ import Collection from '../components/collection';
 import { collectionPage } from '../utils/prop-types';
 
 const Concepts = ({ data }) => {
-  const siteTitle = data.site.siteMetadata.title;
   const concepts = data.allContentfulConcept.edges;
   const hero = data.allContentfulAsset.edges[0].node.fluid;
-  return (
-    <Collection
-      type="concept"
-      siteTitle={siteTitle}
-      edges={concepts}
-      fluidHero={hero}
-    />
-  );
+  return <Collection type="concept" edges={concepts} fluidHero={hero} />;
 };
 
 Concepts.propTypes = collectionPage('concept');
@@ -24,11 +16,6 @@ export default Concepts;
 
 export const pageQuery = graphql`
   query ConceptsQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     allContentfulConcept(sort: { fields: [updatedAt], order: DESC }) {
       edges {
         node {

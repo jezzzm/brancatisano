@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { colors, widths } from '../../utils/constants';
+import { colors, widths } from '../utils/constants';
 
-const ArticleTitle = styled.div`
+const StyledHeading = styled.div`
   padding: 2em 0;
   span {
     font-size: 1.2em;
@@ -20,16 +20,16 @@ const ArticleTitle = styled.div`
   }
 `;
 
-const Title = ({ articleType, title }) => (
-  <ArticleTitle>
+const PageHeading = ({ articleType, title }) => (
+  <StyledHeading>
     <span>{articleType.toUpperCase()}</span>
     <h1>{title}</h1>
-  </ArticleTitle>
+  </StyledHeading>
 );
 
-Title.propTypes = {
+PageHeading.propTypes = {
   articleType: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
 
-export default Title;
+export default PageHeading;

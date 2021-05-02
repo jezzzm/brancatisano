@@ -13,7 +13,7 @@ const { spaceId, accessToken } = contentfulConfig;
 
 if (!spaceId || !accessToken) {
   throw new Error(
-    'Contentful spaceId and the access token need to be provided.',
+    'Contentful spaceId and the access token need to be provided.'
   );
 }
 
@@ -21,7 +21,11 @@ module.exports = {
   siteMetadata: {
     title: 'Stephanie Brancatisano | Architect',
     author: 'Stephanie Brancatisano',
+    description: 'Website for SBA',
     baseURL: 'https://brancatisano.com',
+    phone: '0400 000 000',
+    email: 'info@brancatisano.com',
+    image: '/brancatisano.svg',
   },
   pathPrefix: '/brancatisano',
   plugins: [

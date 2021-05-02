@@ -87,16 +87,16 @@ const NavLinks = ({ onToggleFullscreen, isOpenFullscreen }) => (
         <FullscreenLink to="/" onClick={onToggleFullscreen}>
           HOME
         </FullscreenLink>
-        <FullscreenLink to="/projects/" onClick={onToggleFullscreen}>
+        <FullscreenLink to="/projects" onClick={onToggleFullscreen}>
           PROJECTS
         </FullscreenLink>
-        <FullscreenLink to="/concepts/" onClick={onToggleFullscreen}>
+        <FullscreenLink to="/concepts" onClick={onToggleFullscreen}>
           CONCEPTS
         </FullscreenLink>
-        <FullscreenLink to="/about/" onClick={onToggleFullscreen}>
+        <FullscreenLink to="/about" onClick={onToggleFullscreen}>
           ABOUT
         </FullscreenLink>
-        <FullscreenLink to="/contact/" onClick={onToggleFullscreen}>
+        <FullscreenLink to="/contact" onClick={onToggleFullscreen}>
           CONTACT
         </FullscreenLink>
       </Fullscreen>
