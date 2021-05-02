@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import Map from '../map';
+import Tag from '../tag';
 
 import { colors, widths } from '../../utils/constants';
 
@@ -39,11 +40,11 @@ const MetaContainer = styled.aside`
   grid-template-areas:
     'tags map map map'
     'date map map map';
-  margin: 1em 0;
-  span {
+  margin: 1em 0 2em;
+  h4 {
     display: block;
     font-size: 0.8em;
-    color: ${colors.grey};
+    color: ${colors.midpoint};
     letter-spacing: 1.5px;
   }
   p,
@@ -59,22 +60,22 @@ const MetaContainer = styled.aside`
   }
 `;
 
-const Meta = ({
-  lat, lon, date, dateType, tags,
-}) => (
+const Meta = ({ lat, lon, date, dateType, tags }) => (
   <MetaContainer>
     {tags.length ? (
       <TagsContainer>
-        <span>TAGS</span>
-        <p>{tags.join(', ')}</p>
+        <h4>TAGS</h4>
+        {tags.map((tag) => (
+          <Tag text={tag} key={tag} />
+        ))}
       </TagsContainer>
     ) : null}
     <DateContainer>
-      <span>{dateType}</span>
+      <h4>{dateType}</h4>
       <time>{date}</time>
     </DateContainer>
     <MapContainer>
-      <span>LOCATION</span>
+      <h4>LOCATION</h4>
       <Map lat={lat} lon={lon} />
     </MapContainer>
   </MetaContainer>

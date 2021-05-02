@@ -19,41 +19,42 @@ const InlineNavLink = styled(Link)`
   text-align: right;
   margin-left: 1em;
   color: ${colors.white};
+  text-underline-offset: 0.4em;
   &:hover {
-    text-decoration: none;
-  }
-  transition: 0.15s all;
-  @media (hover: hover) {
-    &:hover {
-      color: ${colors.secondary};
-    }
+    color: ${colors.light};
+    text-decoration: underline solid currentColor 3px;
   }
   @media (max-width: ${widths.sm}) {
     display: none;
   }
 `;
 
-const FixedLinkContainer = styled.div`
+const Fullscreen = styled.div`
   position: fixed;
   display: flex;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
 
-  background: linear-gradient(135deg, ${colors.primary}, ${colors.tertiary});
+  background: conic-gradient(
+    from 35deg at bottom right,
+    ${colors.secondary},
+    ${colors.primary},
+    ${colors.secondary}
+  );
   z-index: 500;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
-const FixedNavLink = styled(Link)`
+const FullscreenLink = styled(Link)`
   display: block;
   width: 100%;
   text-align: center;
   font-size: 2em;
-  color: ${colors.light};
+  color: ${colors.white};
   transition: 0.15s all;
   &:hover {
     text-decoration: none;
@@ -82,23 +83,23 @@ const NavLinks = ({ onToggleFullscreen, isOpenFullscreen }) => (
     </InlineLinkContainer>
     <Burger isOpen={isOpenFullscreen} onClick={onToggleFullscreen} />
     {isOpenFullscreen && (
-      <FixedLinkContainer onClick={onToggleFullscreen}>
-        <FixedNavLink to="/" onClick={onToggleFullscreen}>
+      <Fullscreen onClick={onToggleFullscreen}>
+        <FullscreenLink to="/" onClick={onToggleFullscreen}>
           HOME
-        </FixedNavLink>
-        <FixedNavLink to="/projects/" onClick={onToggleFullscreen}>
+        </FullscreenLink>
+        <FullscreenLink to="/projects" onClick={onToggleFullscreen}>
           PROJECTS
-        </FixedNavLink>
-        <FixedNavLink to="/concepts/" onClick={onToggleFullscreen}>
+        </FullscreenLink>
+        <FullscreenLink to="/concepts" onClick={onToggleFullscreen}>
           CONCEPTS
-        </FixedNavLink>
-        <FixedNavLink to="/about/" onClick={onToggleFullscreen}>
+        </FullscreenLink>
+        <FullscreenLink to="/about" onClick={onToggleFullscreen}>
           ABOUT
-        </FixedNavLink>
-        <FixedNavLink to="/contact/" onClick={onToggleFullscreen}>
+        </FullscreenLink>
+        <FullscreenLink to="/contact" onClick={onToggleFullscreen}>
           CONTACT
-        </FixedNavLink>
-      </FixedLinkContainer>
+        </FullscreenLink>
+      </Fullscreen>
     )}
   </>
 );

@@ -5,11 +5,9 @@ import { colors, widths } from '../utils/constants';
 
 const FooterContentContainer = styled.footer`
   width: 100%;
-  // background: ${colors.primary};
-  background: linear-gradient(135deg, ${colors.primary}, ${colors.tertiary});
-  color: ${colors.light};
+  color: ${colors.copy};
   a {
-    color: ${colors.white};
+    color: ${colors.secondary};
   }
 `;
 
@@ -21,10 +19,12 @@ const FooterContent = styled.div`
   display: grid;
   grid-template-areas: 'left center right';
   grid-column-gap: 1rem;
+  grid-template-columns: 1fr 1fr 1fr;
   @media (max-width: ${widths.sm}) {
     grid-template-areas:
       'left center'
       'left right';
+    grid-template-columns: 1fr 1fr;
   }
 `;
 
@@ -75,12 +75,12 @@ const Footer = () => {
         </CentralFooter>
         <RightFooter>
           <p>
-            Website by
-            {' '}
+            Website by{' '}
             <a
               href="https://zej.com.au/"
               title="To the developer's website"
               target="_blank"
+              rel="noreferrer noopener"
             >
               <strong>zej</strong>
             </a>

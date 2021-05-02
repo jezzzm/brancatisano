@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
-import Helmet from 'react-helmet';
 
 import Layout from '../components/layout';
 import MainWrapper from '../components/main-wrapper';
 import Carousel from '../components/carousel';
 
 const Home = ({ data }) => {
-  const siteTitle = data.site.siteMetadata.title;
+  const meta = {
+    title: 'Home',
+    description: 'Welcome to SBA',
+  };
 
   return (
-    <Layout>
-      <Helmet title={siteTitle} />
+    <Layout meta={meta}>
       <Carousel images={data.allContentfulAsset.edges} />
       <MainWrapper>
         <p>dummy content</p>
@@ -22,28 +23,14 @@ const Home = ({ data }) => {
 };
 
 Home.propTypes = {
-  data: PropTypes.shape({
-    site: PropTypes.shape({
-      siteMetadata: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-      }),
-    }),
-    allContentfulAsset: PropTypes.shape({
-      edges: Carousel.propTypes.images.isRequired,
-    }),
-  }).isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  data: PropTypes.object.isRequired,
 };
 
 export default Home;
 
 export const homeQuery = graphql`
   query HomeQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-
     allContentfulAsset {
       edges {
         node {

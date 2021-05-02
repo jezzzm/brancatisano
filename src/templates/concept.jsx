@@ -5,10 +5,9 @@ import styled from '@emotion/styled';
 
 import Layout from '../components/layout';
 import ArticleMetaBox from '../components/article/meta';
-import ArticleTitle from '../components/article/title';
-import ArticleHelmet from '../components/article/helmet';
+import PageHeading from '../components/page-heading';
 import MainWrapper from '../components/main-wrapper';
-import MoreButton from '../components/more-button';
+import LinkButton from '../components/link-button';
 
 const HeroImage = styled(Img)`
   height: 61.8vh;
@@ -20,28 +19,24 @@ const Content = styled.article`
   margin: 0 auto 4em;
 `;
 
-const ConceptTemplate = (props) => {
-  const concept = props.data.contentfulConcept;
-  const siteMeta = props.data.site.siteMetadata;
+const ConceptTemplate = ({ data }) => {
+  const concept = data.contentfulConcept;
+
+  const meta = {
+    title: concept.title,
+    description: concept.short,
+    imageSrc: concept.hero.fluid.src,
+  };
+
   return (
-    <Layout>
-      <ArticleHelmet
-        title={concept.title}
-        author={siteMeta.author}
-        description={concept.short}
-        baseURL={siteMeta.baseURL}
-        articleType={concept.sys.contentType.sys.id}
-        slug={concept.slug}
-        imageSrc={concept.hero.fluid.src}
-        siteTitle={siteMeta.title}
-      />
+    <Layout meta={meta}>
       <HeroImage
         alt={concept.hero.description}
         title={concept.hero.description}
         fluid={concept.hero.fluid}
       />
       <MainWrapper>
-        <ArticleTitle
+        <PageHeading
           articleType={concept.sys.contentType.sys.id}
           title={concept.title}
         />
@@ -57,7 +52,7 @@ const ConceptTemplate = (props) => {
             __html: concept.description.childMarkdownRemark.html,
           }}
         />
-        <MoreButton link="concepts" text="more concepts" />
+        <LinkButton to="/concepts" text="more concepts" appearance="primary" />
       </MainWrapper>
     </Layout>
   );
@@ -67,13 +62,6 @@ export default ConceptTemplate;
 
 export const pageQuery = graphql`
   query ConceptBySlug($slug: String!) {
-    site {
-      siteMetadata {
-        title
-        author
-        baseURL
-      }
-    }
     contentfulConcept(slug: { eq: $slug }) {
       title
       slug
